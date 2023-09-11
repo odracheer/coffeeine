@@ -1,10 +1,9 @@
 # Coffeeine
---- Need caffeine? Time for Coffeeine ---<br>
----             by Ricardo            ---
+--- Need caffeine? Time for Coffeeine ☕---<br>
+Link to Coffeeine : [https://coffeeine.adaptable.app/main/](https://coffeeine.adaptable.app/main/)
 
 # Tugas 2 PBP
 # **Ricardo Palungguk Natama - 2206082700 - PBP C**
-# [Link to Coffeeine](https://coffeeine.adaptable.app/main/)
 
 ## Soal :
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
