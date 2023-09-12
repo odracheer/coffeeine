@@ -21,7 +21,7 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
         ```
         python -m venv env
         ```
-        Untuk mengaktifkannya, kita menggunakan peintah berikut:<br>
+        Untuk mengaktifkannya, kita menggunakan perintah berikut:<br>
         ```
         env\Scripts\activate.bat
         ```
@@ -68,26 +68,13 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
         Alhasil, aplikasi `main` sudah terdaftar di dalam proyek `coffeeine`.<br>
     
     * **Melakukan _routing_ pada proyek agar dapat menjalankan aplikasi `main`.**<br>
-    Ketika saya mencoba melakukan _routing_ URL terhadap proyek, saya membuat suatu _file_ bernama `urls.py` di dalam direktori `main` yang sudah dibuat sebelumnya. Setelah _file_ terbuat, saya mengisi _file_ kosong tersebut dengan kode berikut:<br>
-        ```
-        from django.urls import path
-        from main.views import show_main
-
-        app_name = 'main'
-
-        urlpatterns = [
-            path('', show_main, name='show_main'),
-        ]
-        ```
-        Kode ini bermaksud untuk mengimpor `path` dari `django.urls` agar bisa membuat suatu pola URL. Di sisi lain, saya juga mengimpor `show_main` dari `main.views` untuk memberikan tampilan kepada pengguna ketika terjadi _request_ terhadap URL dari pengguna. Selain itu, saya membuat variabel `app_name` untuk menunjukkan nama unik pada pola URL dengan nama dari aplikasinya, yakni `main`.<br>
-        
-        Setelah proses tersebut dilakukan, saya menambahkan fungsi `include` dari `django.urls` ke dalam _file_ `urls.py` yang ada di dalam direktori proyek `coffeeine`. Kode yang dimasukkan:<br>
+    Ketika saya mencoba melakukan _routing_ URL terhadap proyek agar dapat menjalankan aplikasi `main`, saya menambahkan fungsi `include` dari `django.urls` ke dalam _file_ `urls.py` yang ada di dalam direktori proyek `coffeeine`. Kode yang dimasukkan:<br>
         ```
         ...
         from django.urls import path, include
         ...
         ```
-        Menggunakan fungsi yang diimpor, saya menambahkan rute URL di dalam variabel `urlpatterns` untuk mengarahkan tampilan saya ke `main`:<br>
+        Menggunakan fungsi yang diimpor, saya menambahkan rute URL di dalam variabel `urlpatterns` untuk mengarahkan tampilan saya ke aplikasi `main`:<br>
         ```
         urlpatterns = [
             ...
@@ -95,9 +82,9 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
             ...
         ]
         ```
-        Untuk mengecek apakah proses tersebut sudah berhasil, saya menjalankan server dari proyek Django dengan perintah `python manage.py runserver`. Terakhir, saya membuka [http://localhost:8000/main/](http://localhost:8000/main/) dan memastikan tampilan `main` sesuai.<br>
+        Untuk mengecek apakah proses tersebut sudah berhasil, saya menjalankan server dari proyek Django dengan perintah `python manage.py runserver`. Terakhir, saya membuka [http://localhost:8000/main/](http://localhost:8000/main/) dan memastikan tampilan `main` sudah dapat dijalankan.<br>
     
-    * **Membuat model pada aplikasi `main` dengan nama `Item`**
+    * **Membuat model pada aplikasi `main` dengan nama `Item`**<br>
     Untuk membuat model pada aplikasi `main` dengan nama `Item`, saya membuat suatu _Class_ di dalam _file_ `models.py`. _Class_ ini melakukan inheritance terhadap `models.Model`. Perintah yang saya jalankan sebagai berikut:<br>
         ```
         from django.db import models
@@ -108,7 +95,7 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
             amount = models.IntegerField()
             description = models.TextField()
         ```
-        Di dalam _file_ tersebut, saya membuat 3 atribut wajib (name, amount, dan description) serta 1 atribut tambahan (price). Setelah itu, saya melakukan migrasi model agar Django dapat melacak perubahan pada model basis data. Kode yang saya jalankan:<br>
+        Di dalam _file_ tersebut, saya membuat 3 atribut wajib (name, amount, dan description) serta 1 atribut tambahan (price). Setelah itu, saya melakukan migrasi model agar Django dapat melacak perubahan pada model _database_. Kode yang saya jalankan:<br>
         ```
         python manage.py makemigrations
         ```
@@ -118,7 +105,7 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
         ```
         Kode ini akan mengeksekusi perubahan model dari berkas migrasi ke dalam _database_.<br>
 
-    * **Membuat sebuah fungsi pada `views.py` untuk dikembalikan ke dalam sebuah _template_ HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.**
+    * **Membuat sebuah fungsi pada `views.py` untuk dikembalikan ke dalam sebuah _template_ HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.**<br>
     Pertama-tama, saya membuka _file_ `views.py` yang ada di dalam direktori `main`. Selanjutnya, saya mengubah isi _file_ tersebut dengan menambahkan fungsi `render` dari `django.shortcuts` yang bertujuan untuk melakukan _render_ terhadap template HTML agar dapat ditampilkan. Kode yang dijalankan:<br>
         ```
         from django.shortcuts import render
@@ -143,3 +130,17 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
         ```
         Kode yang ada di `views.py` sebelumnya akan digunakan _value_-nya di dalam `main.html` sehingga tercipta tampilan dengan nama dan kelas saya. Tujuan dibuatnya proses seperti ini karena Django menerapkan MVT (Model-View-Template) sehingga `View` akan menjadi perantara bagi `Template` untuk mengakses _database_ `Model`.<br>
 
+    * **Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.**<br>
+    Untuk membuat _routing_ yang memetakan fungsi yang telah dibuat di `views.py`, saya membuat suatu _file_ bernama `urls.py` di dalam direktori `main` yang sudah dibuat sebelumnya. Setelah _file_ terbuat, saya mengisi _file_ kosong tersebut dengan kode berikut:<br>
+        ```
+        from django.urls import path
+        from main.views import show_main
+
+        app_name = 'main'
+
+        urlpatterns = [
+            path('', show_main, name='show_main'),
+        ]
+        ```
+        Kode ini bermaksud untuk mengimpor `path` dari `django.urls` agar bisa membuat suatu pola URL. Di sisi lain, saya juga mengimpor `show_main` dari `main.views` untuk memberikan tampilan kepada pengguna ketika terjadi _request_ terhadap URL dari pengguna. Selain itu, saya membuat variabel `app_name` untuk menunjukkan nama unik pada pola URL dengan nama dari aplikasinya, yakni `main`.<br>
+    
