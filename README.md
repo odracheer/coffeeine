@@ -96,20 +96,50 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
         ]
         ```
         Untuk mengecek apakah proses tersebut sudah berhasil, saya menjalankan server dari proyek Django dengan perintah `python manage.py runserver`. Terakhir, saya membuka [http://localhost:8000/main/](http://localhost:8000/main/) dan memastikan tampilan `main` sesuai.<br>
-
     
     * **Membuat model pada aplikasi `main` dengan nama `Item`**
     Untuk membuat model pada aplikasi `main` dengan nama `Item`, saya membuat suatu _Class_ di dalam _file_ `models.py`. _Class_ ini melakukan inheritance terhadap `models.Model`. Perintah yang saya jalankan sebagai berikut:<br>
-    ```
-    from django.db import models
+        ```
+        from django.db import models
 
-    class Items(models.Model):
-        name = models.CharField(max_length=255)
-        price = models.IntegerField()
-        amount = models.IntegerField()
-        description = models.TextField()
-    ```
-    Di dalam _file_ tersebut, saya membuat 3 atribut wajib (name, amount, dan description) serta 1 atribut tambahan (price).<br>
+        class Item(models.Model):
+            name = models.CharField(max_length=255)
+            price = models.IntegerField()
+            amount = models.IntegerField()
+            description = models.TextField()
+        ```
+        Di dalam _file_ tersebut, saya membuat 3 atribut wajib (name, amount, dan description) serta 1 atribut tambahan (price). Setelah itu, saya melakukan migrasi model agar Django dapat melacak perubahan pada model basis data. Kode yang saya jalankan:<br>
+        ```
+        python manage.py makemigrations
+        ```
+        Ini dilakukan untuk membuat suatu berkas migrasi yang belum diaplikasikan ke _database_. Hal ini penting karena apabila tidak dilakukan, dapat terjadi _error_ saat melakukan kode selanjutnya, yakni:<br>
+        ```
+        python manage.py migrate
+        ```
+        Kode ini akan mengeksekusi perubahan model dari berkas migrasi ke dalam _database_.<br>
 
-    
+    * **Membuat sebuah fungsi pada `views.py` untuk dikembalikan ke dalam sebuah _template_ HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.**
+    Pertama-tama, saya membuka _file_ `views.py` yang ada di dalam direktori `main`. Selanjutnya, saya mengubah isi _file_ tersebut dengan menambahkan fungsi `render` dari `django.shortcuts` yang bertujuan untuk melakukan _render_ terhadap template HTML agar dapat ditampilkan. Kode yang dijalankan:<br>
+        ```
+        from django.shortcuts import render
+        ```
+        Jika sudah diimpor, maka kita dapat melanjutkan proses penambahan fungsi `show_main` di bawah impor tersebut. Berikut kodenya:<br>
+        ```
+        def show_main(request):
+            context = {
+                'name': 'Ricardo Palungguk Natama',
+                'class': 'PBP C'
+            }
+            return render(request, "main.html", context)
+        ```
+        Fungsi tersebut akan digunakan untuk mengatur permintaan HTTP sehingga tampilannya sesuai. Selain itu, kata kunci `name` diberikan value `Ricardo Palungguk Natama` sesuai nama saya dan `class` diberikan value `PBP C`. Fungsi ini akan me-_render_ tampilan dari `main.html` yang ada di direktori `templates`. Setelah mengubah kode di dalam `views.py`, saya mengubah beberapa kode yang ada di `main.html` menjadi seperti berikut:<br>
+        ```
+        ...
+        <h5>Name: </h5>
+        <p>{{ name }}<p>
+        <h5>Class: </h5>
+        <p>{{ class }}<p>
+        ...
+        ```
+        Kode yang ada di `views.py` sebelumnya akan digunakan _value_-nya di dalam `main.html` sehingga tercipta tampilan dengan nama dan kelas saya. Tujuan dibuatnya proses seperti ini karena Django menerapkan MVT (Model-View-Template) sehingga `View` akan menjadi perantara bagi `Template` untuk mengakses _database_ `Model`.<br>
 
