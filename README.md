@@ -148,7 +148,10 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
     Sebelum melakukan _deployment_, saya menyiapkan terlebih dahulu sebuah repositori di GitHub yang bernama `coffeeine`. Repositori ini dihubungkan dengan direktori utama `coffeeine` yang sebelumnya sudah diinisiasi serta dikonfigurasi. Setelah itu, saya melakukan `add`, `commit`, dan `push` dari direktori lokal ke dalam repositori GitHub. Selanjutnya, saya membuat `New App` di Adaptable dan mengkoneksikannya dengan repositori `coffeeine` yang ada di GitHub. Lalu, saya menggunakan `Python App Template` dan `PostgreSQL` serta mengkonfigurasi versi python yang saya punya. Setelahnya, saya memasukkan `python manage.py migrate && gunicorn coffeeine.wsgi` pada bagian Start Command. Karena konfigurasi telah selesai, saya memasukkan nama aplikasi `coffeeine` dan mencentang bagian `HTTP Listener on PORT`. Terakhir, saya meng-klik `Deploy App` untuk memproses `_deployment_`. Akhirnya, aplikasi selesai di-_deploy_ dan dapat diakses melalui link [https://coffeeine.adaptable.app/main/](https://coffeeine.adaptable.app/main/).<br>
     <br>
 
-2. Empty.<br>
+2. Berikut adalah bagan yang berisi _request client_ ke web aplikasi berbasis Django beserta responsnya<br>
+    ![Bagan](https://i.imgur.com/UaDPTdS.png)
+    Penjelasan:<br>
+    -<br>
     <br>
 
 3. _Virtual environment_ memainkan peran penting dalam pengembangan suatu proyek aplikasi web yang berbasis Django. Dengan bantuan _virtual environment_, kita dapat membuat isolasi proyek yang mandiri. Hasl ini sangat berguna jika kita memiliki banyak proyek. Isolasi proyek ini turut memengaruhi _dependencies_ dan _package_ Python yang ikut terisolasi sehingga akan terhindar dari konflik apabila terdapat lebih dari satu proyek Django dan setiap proyeknya menggunakan versi yang berbeda (baik _package_ maupun _dependencies_).<br>
