@@ -145,4 +145,18 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
         Kode ini bermaksud untuk mengimpor `path` dari `django.urls` agar bisa membuat suatu pola URL. Di sisi lain, saya juga mengimpor `show_main` dari `main.views` untuk memberikan tampilan kepada pengguna ketika terjadi _request_ terhadap URL dari pengguna. Selain itu, saya membuat variabel `app_name` untuk menunjukkan nama unik pada pola URL dengan nama dari aplikasinya, yakni `main`.<br>
     
     * **Melakukan _deployment_ ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.**<br>
-    Sebelum melakukan _deployment_, saya menyiapkan terlebih dahulu sebuah repositori di GitHub yang bernama `coffeeine`. Repositori ini dihubungkan dengan direktori utama `coffeeine` yang sebelumnya sudah diinisiasi serta dikonfigurasi. Setelah itu, saya melakukan `add`, `commit`, dan `push` dari direktori lokal ke dalam repositori GitHub. Selanjutnya, saya membuat `New App` di Adaptable dan mengkoneksikannya dengan repositori `coffeeine` yang ada di GitHub. Lalu, saya menggunakan `Python App Template` dan `PostgreSQL` serta mengkonfigurasi versi python yang saya punya. Setelahnya, saya memasukkan `python manage.py migrate && gunicorn coffeeine.wsgi` pada bagian Start Command. Karena konfigurasi telah selesai, saya memasukkan nama aplikasi `coffeeine` dan mencentang bagian `HTTP Listener on PORT`. Terakhir, saya meng-klik `Deploy App` untuk memproses `_deployment_`. Akhirnya, aplikasi selesai di-_deploy_ dan dapat diakses melalui link [https://coffeeine.adaptable.app/main/](https://coffeeine.adaptable.app/main/).
+    Sebelum melakukan _deployment_, saya menyiapkan terlebih dahulu sebuah repositori di GitHub yang bernama `coffeeine`. Repositori ini dihubungkan dengan direktori utama `coffeeine` yang sebelumnya sudah diinisiasi serta dikonfigurasi. Setelah itu, saya melakukan `add`, `commit`, dan `push` dari direktori lokal ke dalam repositori GitHub. Selanjutnya, saya membuat `New App` di Adaptable dan mengkoneksikannya dengan repositori `coffeeine` yang ada di GitHub. Lalu, saya menggunakan `Python App Template` dan `PostgreSQL` serta mengkonfigurasi versi python yang saya punya. Setelahnya, saya memasukkan `python manage.py migrate && gunicorn coffeeine.wsgi` pada bagian Start Command. Karena konfigurasi telah selesai, saya memasukkan nama aplikasi `coffeeine` dan mencentang bagian `HTTP Listener on PORT`. Terakhir, saya meng-klik `Deploy App` untuk memproses `_deployment_`. Akhirnya, aplikasi selesai di-_deploy_ dan dapat diakses melalui link [https://coffeeine.adaptable.app/main/](https://coffeeine.adaptable.app/main/).<br>
+    <br>
+2. Empty.<br>
+    <br>
+3. Empty.<br>
+    <br>
+4. MVC, MVT, dan MVVM adalah pola arsitektur yang biasa digunakan dalam pengembangan suatu perangkat lunak. Masing-masing pola memiliki caranya sendiri dalam mengatur data dan tampilan kepada _user_. Berikut penjelasannya:<br>
+    * **MVC** <br>
+    MVC merupakan singkatan dari _Model-View-Controller_. Ini adalah pola arsitektur yang paling umum digunakan pada saat ini. _Model_ merupakan komponen yang bertanggung jawab dalam mengelola data dan _business logic_ dari aplikasi yang dibuat. _View_ merupakan komponen yang mengatur tampilan kepada _user_ dan menerima _input_ dari mereka. Controller merupakan komponen yang mengatur logika dari aplikasi serta menjadi perantara _Model_ dan _View_. Jika _View_ menerima _input_ dari _user_, maka _Controller_ lah yang akan mengelola _input_ tersebut.
+
+    * **MVT** <br>
+    MVT merupakan singkatan dari _Model-View-Template_. Pola arsitektur ini sering digunakan saat pemrogram ingin menggunakan _framework_ seperti Django Python. Di sini, _Model_ merupakan komponen yang bertanggung jawab untuk mengelola data dan mengatur akses ke data. _View_ merupakan komponen yang 
+
+    * **MVVM** <br>
+    MVVM merupakan singkatan dari _Model-View-ViewModel_.
