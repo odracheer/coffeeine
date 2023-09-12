@@ -68,7 +68,7 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
         Alhasil, aplikasi `main` sudah terdaftar di dalam proyek `coffeeine`.<br>
     
     * **Melakukan _routing_ pada proyek agar dapat menjalankan aplikasi `main`.**<br>
-    Ketika saya mencoba melakukan _routing_ URL terhadap proyek, saya membuat suatu file bernama `urls.py` di dalam direktori `main` yang sudah dibuat sebelumnya. Setelah file terbuat, saya mengisi file kosong tersebut dengan kode berikut:<br>
+    Ketika saya mencoba melakukan _routing_ URL terhadap proyek, saya membuat suatu _file_ bernama `urls.py` di dalam direktori `main` yang sudah dibuat sebelumnya. Setelah _file_ terbuat, saya mengisi _file_ kosong tersebut dengan kode berikut:<br>
         ```
         from django.urls import path
         from main.views import show_main
@@ -81,7 +81,7 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
         ```
         Kode ini bermaksud untuk mengimpor `path` dari `django.urls` agar bisa membuat suatu pola URL. Di sisi lain, saya juga mengimpor `show_main` dari `main.views` untuk memberikan tampilan kepada pengguna ketika terjadi _request_ terhadap URL dari pengguna. Selain itu, saya membuat variabel `app_name` untuk menunjukkan nama unik pada pola URL dengan nama dari aplikasinya, yakni `main`.<br>
         
-        Setelah proses tersebut dilakukan, saya menambahkan fungsi `include` dari `django.urls` ke dalam file `urls.py` yang ada di dalam direktori proyek `coffeeine`. Kode yang dimasukkan:<br>
+        Setelah proses tersebut dilakukan, saya menambahkan fungsi `include` dari `django.urls` ke dalam _file_ `urls.py` yang ada di dalam direktori proyek `coffeeine`. Kode yang dimasukkan:<br>
         ```
         ...
         from django.urls import path, include
@@ -95,12 +95,21 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
             ...
         ]
         ```
-        Untuk mengecek apakah proses tersebut sudah berhasil, saya menjalankan server dari proyek Django dengan perintah `python manage.py runserver`. Terakhir, saya membuka [http://localhost:8000/main/](http://localhost:8000/main/) dan memastikan tampilan `main` sesuai.
+        Untuk mengecek apakah proses tersebut sudah berhasil, saya menjalankan server dari proyek Django dengan perintah `python manage.py runserver`. Terakhir, saya membuka [http://localhost:8000/main/](http://localhost:8000/main/) dan memastikan tampilan `main` sesuai.<br>
 
     
+    * **Membuat model pada aplikasi `main` dengan nama `Item`**
+    Untuk membuat model pada aplikasi `main` dengan nama `Item`, saya membuat suatu _Class_ di dalam _file_ `models.py`. _Class_ ini melakukan inheritance terhadap `models.Model`. Perintah yang saya jalankan sebagai berikut:<br>
+    ```
+    from django.db import models
+
+    class Items(models.Model):
+        name = models.CharField(max_length=255)
+        price = models.IntegerField()
+        amount = models.IntegerField()
+        description = models.TextField()
+    ```
+    Di dalam _file_ tersebut, saya membuat 3 atribut wajib (name, amount, dan description) serta 1 atribut tambahan (price).<br>
+
     
-
-
-
-
 
