@@ -46,7 +46,7 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
         ```
         ALLOWED_HOSTS = ["*"]
         ```
-        Setelah semua proses dilakukan, saya menambahkan `.gitignore` agar Git tidak perlu melacak beberapa berkas sehingga tidak memberatkan proses kerja komputer.
+        Setelah semua proses dilakukan, saya menambahkan `.gitignore` agar Git tidak perlu melacak beberapa berkas sehingga tidak memberatkan proses kerja komputer.<br>
 
     * **Membuat aplikasi dengan nama `main` pada proyek tersebut.**<br>
     Langkah awal yang harus dilakukan adalah menyalakan _virtual environment_ dengan menjalankan _command prompt_ di dalam direktori utama `coffeeine`. Saya menggunakan perintah:<br>
@@ -65,4 +65,42 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
             ...
         ]
         ```
-        Alhasil, aplikasi `main` sudah terdaftar di dalam proyek `coffeeine`.
+        Alhasil, aplikasi `main` sudah terdaftar di dalam proyek `coffeeine`.<br>
+    
+    * **Melakukan _routing_ pada proyek agar dapat menjalankan aplikasi `main`.**<br>
+    Ketika saya mencoba melakukan _routing_ URL terhadap proyek, saya membuat suatu file bernama `urls.py` di dalam direktori `main` yang sudah dibuat sebelumnya. Setelah file terbuat, saya mengisi file kosong tersebut dengan kode berikut:<br>
+        ```
+        from django.urls import path
+        from main.views import show_main
+
+        app_name = 'main'
+
+        urlpatterns = [
+            path('', show_main, name='show_main'),
+        ]
+        ```
+        Kode ini bermaksud untuk mengimpor `path` dari `django.urls` agar bisa membuat suatu pola URL. Di sisi lain, saya juga mengimpor `show_main` dari `main.views` untuk memberikan tampilan kepada pengguna ketika terjadi _request_ terhadap URL dari pengguna. Selain itu, saya membuat variabel `app_name` untuk menunjukkan nama unik pada pola URL dengan nama dari aplikasinya, yakni `main`.<br>
+        
+        Setelah proses tersebut dilakukan, saya menambahkan fungsi `include` dari `django.urls` ke dalam file `urls.py` yang ada di dalam direktori proyek `coffeeine`. Kode yang dimasukkan:<br>
+        ```
+        ...
+        from django.urls import path, include
+        ...
+        ```
+        Menggunakan fungsi yang diimpor, saya menambahkan rute URL di dalam variabel `urlpatterns` untuk mengarahkan tampilan saya ke `main`:<br>
+        ```
+        urlpatterns = [
+            ...
+            path('main/', include('main.urls')),
+            ...
+        ]
+        ```
+        Untuk mengecek apakah proses tersebut sudah berhasil, saya menjalankan server dari proyek Django dengan perintah `python manage.py runserver`. Terakhir, saya membuka [http://localhost:8000/main/](http://localhost:8000/main/) dan memastikan tampilan `main` sesuai.
+
+    
+    
+
+
+
+
+
