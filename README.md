@@ -172,5 +172,24 @@ Meskipun begitu, suatu aplikasi web berbasis Django tetap bisa dibuat tanpa meng
     * **Perbedaan MVC, MVT, MVVM**<br>
     Ketiganya memiliki kegunaan yang mirip di komponen _Model_. Akan tetapi, komponen lainnya saling membedakan fungsionalitasnya. MVC dan MVT mirip, namun MVC menggunakan komponen _View_-nya untuk memberikan tampilan kepada _user_ sementara MVT menggunakan komponen _Template_ untuk mengatur tampiilan kepada _user_. MVVM juga melakukan hal yang mirip dengan MVC dalam hal pengaturan tampilan, yakni menggunakan _View_. Untuk mengolah datanya dari _Model_, MVC menggunakan _Controller_, MVT menggunakan _View_, dan MVVM menggunakan _ViewModel_. Selain beberapa hal tadi, perbedaan lainnya adalah MVC dan MVT umumnya digunakan sebagai kerangka kerja, tetapi MVVM biasanya digunakan untuk pengembangan aplikasi berbasis UI yang kompleks seperti aplikasi _mobile_.
 
-## Bonus
+## Bonus Tugas 2
 Selain test dari template/tutorial 1, saya juga menambahkan test lain yang berguna untuk mengecek unit models.py yang telah saya buat. Test berjalan dengan lancar.
+
+# Tugas 3 PBP
+## Soal :
+1. Apa perbedaan antara form `POST` dan form `GET` dalam Django?
+2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+4. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara _step-by-step_ (bukan hanya sekadar mengikuti tutorial).
+
+## Jawaban :
+1. Setelah mencari sumber informasi yang menjelaskan tentang form `POST` dan form `GET` di PPT dan internet, saya akan menjabarkan perbedaan antara form `POST` dan form `GET` dalam Django di tabel berikut:
+
+| Perbedaan               | POST                             | GET                             |
+|-------------------------|------------------------------------------|---------------------------------| 
+| Kegunaan                | POST _request_ digunakan untuk mengirim data ke server| GET _request_ digunakan untuk membaca/menerima data dari web server |
+| Pemanggilan Method      | POST menggunakan $_POST | GET menggunakan $_GET |
+| Batas Karakter          | Tidak ada batasan ukuran yang ketat dalam jumlah data yang dapat dikirimkan | Panjang URL yang dapat digunakan terbatas sampai 2047 karakter |
+| Keamanan                | Lebih aman untuk data sensitif karena data tidak terlihat dalam URL | Kurang aman karena data terlihat dalam URL dan dapat dengan mudah dilihat oleh pihak ketiga |
+| HTTP Status Code        | Jika POST _request_ berhasil, maka server akan mengembalikan kode status HTTP 201 | Jika GET _request_ berhasil, maka server akan mengembalikan kode status HTTP 200 (OK) |
+| _Input_ Data            | Biasanya, _input_ data dilakukan melalui form | Biasanya, _input_ data dilakukan melalui link |
