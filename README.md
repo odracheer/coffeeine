@@ -185,25 +185,25 @@ Selain test dari template/tutorial 1, saya juga menambahkan test lain yang bergu
 ## Jawaban :
 1. Setelah mencari sumber informasi yang menjelaskan tentang form `POST` dan form `GET` di PPT dan internet, saya akan menjabarkan perbedaan antara form `POST` dan form `GET` dalam Django di tabel berikut:
 
-| Perbedaan               | POST                             | GET                             |
-|-------------------------|------------------------------------------|---------------------------------| 
-| Kegunaan                | POST _request_ digunakan untuk mengirim data ke server| GET _request_ digunakan untuk membaca/menerima data dari web server |
-| Pemanggilan Method      | POST menggunakan $_POST | GET menggunakan $_GET |
-| Batas Karakter          | Tidak ada batasan ukuran yang ketat dalam jumlah data yang dapat dikirimkan | Panjang URL yang dapat digunakan terbatas sampai 2047 karakter |
-| Keamanan                | Lebih aman untuk data sensitif karena data tidak terlihat dalam URL | Kurang aman karena data terlihat dalam URL dan dapat dengan mudah dilihat oleh pihak ketiga |
-| HTTP Status Code        | Jika POST _request_ berhasil, maka server akan mengembalikan kode status HTTP 201 | Jika GET _request_ berhasil, maka server akan mengembalikan kode status HTTP 200 (OK) |
-| _Input_ Data            | Biasanya, _input_ data dilakukan melalui form | Biasanya, _input_ data dilakukan melalui link |
+    | Perbedaan               | POST                             | GET                             |
+    |-------------------------|------------------------------------------|---------------------------------| 
+    | Kegunaan                | POST _request_ digunakan untuk mengirim data ke server| GET _request_ digunakan untuk membaca/menerima data dari web server |
+    | Pemanggilan Method      | POST menggunakan $_POST | GET menggunakan $_GET |
+    | Batas Karakter          | Tidak ada batasan ukuran yang ketat dalam jumlah data yang dapat dikirimkan | Panjang URL yang dapat digunakan terbatas sampai 2047 karakter |
+    | Keamanan                | Lebih aman untuk data sensitif karena data tidak terlihat dalam URL | Kurang aman karena data terlihat dalam URL dan dapat dengan mudah dilihat oleh pihak ketiga |
+    | HTTP Status Code        | Jika POST _request_ berhasil, maka server akan mengembalikan kode status HTTP 201 | Jika GET _request_ berhasil, maka server akan mengembalikan kode status HTTP 200 (OK) |
+    | _Input_ Data            | Biasanya, _input_ data dilakukan melalui form | Biasanya, _input_ data dilakukan melalui link |
 
 <br>
 
 2. Dalam konteks pengiriman data, terdapat beberapa perbedaan utama antara XML, JSON, dan HTML. Perbedaan tersebut akan saya jabarkan dalam bentuk tabel:
 
-| Perbedaan           | XML                        | JSON                              | HTML                        |
-|---------------------|----------------------------|-----------------------------------|-----------------------------|
-| Struktur Data       | Hierarkis, berbasis tag     | Berbasis pasangan "key-value"     | Hierarkis, berbasis tag     |
-| Tujuan Utama        | Pertukaran data antara sistem yang berbeda dan dukungan banyak bahasa | Pertukaran data antara server dan aplikasi web, umum dalam pengembangan aplikasi web modern | Tidak digunakan untuk pertukaran data, digunakan untuk membuat tampilan dan struktur halaman web |
-| Keterbacaan manusia | Lebih sulit dibaca manusia | Mudah dibaca oleh manusia | Relatif mudah dibaca oleh manusia karena dirancang untuk menafsirkan dan menyusun teks, gambar, dan materi lain di web |
-| Ekstensibilitas     | Sangat ekstensibel dengan DTD atau XML Schema | Kurang ekstensibel, struktur data lebih sederhana | Tidak sefleksibel, aturan dan elemen sudah ditentukan |
+    | Perbedaan           | XML                        | JSON                              | HTML                        |
+    |---------------------|----------------------------|-----------------------------------|-----------------------------|
+    | Struktur Data       | Hierarkis, berbasis tag     | Berbasis pasangan "key-value"     | Hierarkis, berbasis tag     |
+    | Tujuan Utama        | Pertukaran data antara sistem yang berbeda dan dukungan banyak bahasa | Pertukaran data antara server dan aplikasi web, umum dalam pengembangan aplikasi web modern | Tidak digunakan untuk pertukaran data, digunakan untuk membuat tampilan dan struktur halaman web |
+    | Keterbacaan manusia | Lebih sulit dibaca manusia | Mudah dibaca oleh manusia | Relatif mudah dibaca oleh manusia karena dirancang untuk menafsirkan dan menyusun teks, gambar, dan materi lain di web |
+    | Ekstensibilitas     | Sangat ekstensibel dengan DTD atau XML Schema | Kurang ekstensibel, struktur data lebih sederhana | Tidak ekstensibel, aturan dan elemen sudah ditentukan |
 
 <br>
 
@@ -249,7 +249,7 @@ Selain test dari template/tutorial 1, saya juga menambahkan test lain yang bergu
         TEMPLATES = [
             {
                 'BACKEND': 'django.template.backends.django.DjangoTemplates',
-                'DIRS': [BASE_DIR / 'templates'], # Tambahkan kode ini
+                'DIRS': [BASE_DIR / 'templates'],
                 'APP_DIRS': True,
                 ...
             }
@@ -421,7 +421,7 @@ Selain test dari template/tutorial 1, saya juga menambahkan test lain yang bergu
                 from django.http import HttpResponse
                 from django.core import serializers
             ```
-            Setelah melakukan impor, saya membuat fungsi masing-masing untuk `XML _by ID_` dan `JSON _by ID_`. Kedua fungsi tersebut menerima parameter `request` dan `id`. Di dalamnya terdapat variabel `data` untuk menyimpan hasil _query_ dari data dengan ID tertentu yang ada di `Item`. Sama seperti sebelumnya, hal yang membedakan kedua fungsi parameter `serialize` dan parameter `content_type`. Fungsi yang saya buat untuk XML:<br>
+            Setelah melakukan impor, saya membuat fungsi masing-masing untuk `XML by ID` dan `JSON by ID`. Kedua fungsi tersebut menerima parameter `request` dan `id`. Di dalamnya terdapat variabel `data` untuk menyimpan hasil _query_ dari data dengan ID tertentu yang ada di `Item`. Sama seperti sebelumnya, hal yang membedakan kedua fungsi parameter `serialize` dan parameter `content_type`. Fungsi yang saya buat untuk XML:<br>
             ```
             def show_xml_by_id(request, id):
                 data = Product.objects.filter(pk=id)
