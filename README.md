@@ -375,7 +375,7 @@ Selain test dari template/tutorial 1, saya juga menambahkan test lain yang bergu
         {% endblock content %}
         ```
 
-    * **Tambahkan 5 fungsi `views` untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML _by ID_, dan JSON _by ID_.**
+    * **Tambahkan 5 fungsi `views` untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML _by ID_, dan JSON _by ID_.**<br>
     Untuk menambahkan 5 fungsi `views`, saya melakukan beberapa langkah sesuai dengan format:<br>
         * HTML<br>
         Pertama-tama, saya membuat `base.html` yang berfungsi sebagai kerangka halaman web di _folder_ `templates` dalam direktori utama. Lalu, saya juga mengubah `main.html` dengan melakukan _extends_ terhadap `base.html`. Setelah itu, saya membuat _file_ `forms.py` di direktori `main`. Ketiga hal ini sudah dilakukan di _checklist_ sebelumnya sehingga saya akan fokus ke _file_ `views.py` yang ada di direktori `main`. Saya mengimpor `Item` dari `main.models` dengan kode berikut:<br>
@@ -434,7 +434,38 @@ Selain test dari template/tutorial 1, saya juga menambahkan test lain yang bergu
                 return HttpResponse(serializers.serialize("json", data), content_type="application/json")
             ```
 
+    * **Membuat _routing_ URL untuk masing-masing `views` yang telah ditambahkan pada poin 2.**<br>
+    Untuk membuat _routing_ URL untuk masing-masing `views`, langkah yang perlu dilakukan cukup singkat. Hal yang saya lakukan adalah mengimpor semua fungsi yang sudah dibuat sebelumnya ke dalam _file_ `urls.py` yang ada di direktori `main`. Kode yang saya masukkan sebagai berikut:<br>
+        ```
+        from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id 
+        ```
+        Sehabis itu, saya menambahkan beberapa _path_ URL baru ke dalam `urlpatterns`. _Path_ yang saya tambahkan:<br>
+        ```
+        urlpatterns = [
+            ...
+            path('xml/', show_xml, name='show_xml'), 
+            path('json/', show_json, name='show_json'),
+            path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+            path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+            ...
+        ]
+        ```
+        Dengan demikian, kita dapat menjalankan server dan `localhost:8000` untuk melihat data dengan format yang kita inginkan. Jika kita ingin melihat data dalam format XML, kita bisa menjalankan `http://localhost:8000/xml`. Namun, kita dapat menjalankan `http://localhost:8000/xml/[ID]` apabila ingin melihat data dengan format XML secara spesifik berdasarkan IDnya. Di samping itu, kita juga bisa melihat data dalam format JSON dengan menjalankan `http://localhost:8000/json`. Untuk melihat data dengan format JSON secara spesifik berdasarkan ID, kita bisa menjalankan `http://localhost:8000/json/[ID]`. Untuk HTML, kita cukup menjalankan `http://localhost:8000` karena pada dasarnya data sudah dalam bentuk HTML. Namun, jika kita ingin melihat format HTML secara spesifik, disarankan untuk menggunakan Postman agar data dalam format HTML terlihat.
     
+    <br>
+
+    * **Mengakses kelima URL di poin 2 menggunakan Postman, membuat _screenshot_ dari hasil akses URL pada Postman, dan menambahkannya ke dalam `README.md.`**<br>
+    Berikut adalah hasil akses URL pada Postman dalam bentuk _screenshot_:<br>
+        * HTML<br>
+        ![HTML image](https://i.imgur.com/tEP2ECA.png)
+        * XML<br>
+        ![XML image](https://i.imgur.com/2jQd29U.png)
+        * JSON <br>
+        ![JSON image](https://i.imgur.com/5nTPsYK.png)
+        * XML _by_ ID<br>
+        ![XML by ID image](https://i.imgur.com/wfFIdsl.png)
+        * JSON _by_ ID<br>
+        ![JSON by ID image](https://i.imgur.com/z13OnOM.png)
 
 ## Bonus Tugas 3
 Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan saya juga menyesuaikan konteksnya dengan `jenis kopi` karena saya membuat aplikasi kopi.
