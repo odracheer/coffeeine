@@ -375,11 +375,69 @@ Selain test dari template/tutorial 1, saya juga menambahkan test lain yang bergu
         {% endblock content %}
         ```
 
+    * **Tambahkan 5 fungsi `views` untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML _by ID_, dan JSON _by ID_.**
+    Untuk menambahkan 5 fungsi `views`, saya melakukan beberapa langkah sesuai dengan format:<br>
+        * HTML<br>
+        Pertama-tama, saya membuat `base.html` yang berfungsi sebagai kerangka halaman web di _folder_ `templates` dalam direktori utama. Lalu, saya juga mengubah `main.html` dengan melakukan _extends_ terhadap `base.html`. Setelah itu, saya membuat _file_ `forms.py` di direktori `main`. Ketiga hal ini sudah dilakukan di _checklist_ sebelumnya sehingga saya akan fokus ke _file_ `views.py` yang ada di direktori `main`. Saya mengimpor `Item` dari `main.models` dengan kode berikut:<br>
+            ```
+            from main.models import Item
+            ```
+            Setelah melakukan hal tersebut, saya mengubah fungsi `show_main` yang sudah pernah dibuat sebelumnya menjadi seperti ini:<br>
+            ```
+            def show_main(request):
+                items = Item.objects.all()
 
+                context = {
+                    'name': 'Ricardo Palungguk Natama', 
+                    'class': 'PBP C', 
+                    'items': items
+                }
+
+                return render(request, "main.html", context)
+            ```
+        
+        * XML dan JSON<br>
+        Pertama-tama, saya membuka `views.py` yang ada di direktori `main`. Lalu, saya menambahkan beberapa impor seperti berikut:<br>
+            ```
+            from django.http import HttpResponse
+            from django.core import serializers
+            ```
+            Setelah melakukan impor, saya membuat fungsi masing-masing untuk `XML` dan `JSON`. Kedua fungsi tersebut menerima parameter `request` dan di dalamnya terdapat variabel `data` untuk menyimpan hasil _query_ dari seluruh data yang ada di `Item`. Hal yang membedakan kedua fungsi parameter `serialize` dan parameter `content_type`. Fungsi yang saya buat untuk XML:<br>
+            ```
+            def show_xml(request):
+                data = Item.objects.all()
+                return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+            ```
+            Fungsi yang saya buat untuk JSON:<br>
+            ```
+            def show_json(request):
+                data = Item.objects.all()
+                return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+            ```
+
+        * XML _by ID_ dan JSON _by ID_<br>
+        Pertama-tama, saya membuka `views.py` yang ada di direktori `main`. Lalu, saya menambahkan beberapa impor seperti berikut:<br>
+            ```
+                from django.http import HttpResponse
+                from django.core import serializers
+            ```
+            Setelah melakukan impor, saya membuat fungsi masing-masing untuk `XML _by ID_` dan `JSON _by ID_`. Kedua fungsi tersebut menerima parameter `request` dan `id`. Di dalamnya terdapat variabel `data` untuk menyimpan hasil _query_ dari data dengan ID tertentu yang ada di `Item`. Sama seperti sebelumnya, hal yang membedakan kedua fungsi parameter `serialize` dan parameter `content_type`. Fungsi yang saya buat untuk XML:<br>
+            ```
+            def show_xml_by_id(request, id):
+                data = Product.objects.filter(pk=id)
+                return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+            ```
+            Fungsi yang saya buat untuk JSON:<br>
+            ```
+            def show_json_by_id(request, id):
+                data = Product.objects.filter(pk=id)
+                return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+            ```
+
+    
 
 ## Bonus Tugas 3
 Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan saya juga menyesuaikan konteksnya dengan `jenis kopi` karena saya membuat aplikasi kopi.
-
 
 ## Referensi Tugas 3
 * Alexandromeo. (2016, November 6). _Perbedaan Method POST dan GET Beserta Fungsinya._ Makinrajin. Retrieved September 17, 2023, from https://makinrajin.com/blog/perbedaan-post-dan-get/
