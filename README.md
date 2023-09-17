@@ -214,6 +214,173 @@ Selain test dari template/tutorial 1, saya juga menambahkan test lain yang bergu
 
 <br>
 
+4. Untuk mengimplementasikan _checklist_ di atas secara _step-by-step_, saya akan menjabarkan setiap poin satu per satu.
+    * **Membuat input `form` untuk menambahkan objek model pada app sebelumnya.**<br>
+    Sebelum membuat input `form`, saya masuk ke `urls.py` yang ada di dalam folder `coffeeine` untuk mengubah _path_ `main/` menjadi `''` dengan kode berikut:<br>
+        ```
+        urlpatterns = [
+            path('', include('main.urls')),
+            path('admin/', admin.site.urls),
+        ]
+        ```
+        Hal ini penting agar lebih sesuai dengan konvensi yang ada. Karena `urlpatterns` sudah diubah, kita harus membuat suatu _skeleton_ yang berfungsi sebagai kerangka _views_ sehingga mengurangi redundansi kode. Pertama, saya membuat _folder_ `templates` di dalam direktori utama. Di dalamnya, saya membuat suatu _file_ dengan nama `base.html` yang menjadi kerangka umum halaman web. Saya mengisi _file_ tersebut dengan kode berikut: <br>
+        ```
+        {% load static %}
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
+                {% block meta %}
+                {% endblock meta %}
+            </head>
+
+            <body>
+                {% block content %}
+                {% endblock content %}
+            </body>
+        </html>
+        ```
+        Setelah itu, saya membuka `settings.py` yang ada di direktori proyek `coffeeine` untuk mengganti isi variabel TEMPLATES dengan kode berikut:<br>
+        ```
+        TEMPLATES = [
+            {
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'DIRS': [BASE_DIR / 'templates'], # Tambahkan kode ini
+                'APP_DIRS': True,
+                ...
+            }
+        ]
+        ```
+        Setelah semua proses tersebut dilakukan, saya baru memulai membuat form input. Awalnya, saya membuat _file_ dengan nama `forms.py` di direktori `main`. Berikut adalah kode yang saya gunakan:<br>
+        ```
+        from django.forms import ModelForm
+        from main.models import Item
+
+        class ItemForm(ModelForm):
+            class Meta:
+                model = Item
+                fields = ["name", "price", "amount", "description"]
+        ```
+        Tahapan selanjutnya adalah membuat fungsi baru untuk menambahkan Item dengan nama `create_item` yang memiliki parameter `request`. Tetapi, sebelumnya kita harus mengimpor beberapa fungsi di bagian paling atas:<br>
+        ```
+        from django.http import HttpResponseRedirect
+        from main.forms import ItemForm
+        from django.urls import reverse
+        from main.models import Item #Ga ada di tutorial
+        ```
+        Jika sudah, maka kita langsung ke bagian pembuatan fungsi. Kode yang saya gunakan:<br>
+        ```
+        def create_item(request):
+            form = ItemForm(request.POST or None)
+
+            if form.is_valid() and request.method == "POST":
+                form.save()
+                return HttpResponseRedirect(reverse('main:show_main'))
+
+            context = {'form': form}
+            return render(request, "create_item.html", context)
+        ```
+        Selain itu, tak lupa saya mengubah fungsi `show_main` yang sebelumnya pernah dibuat dengan kode berikut:<br>
+        ```
+        def show_main(request):
+            items = Item.objects.all()
+
+            context = {
+                'name': 'Ricardo Palungguk Natama', 
+                'class': 'PBP C', 
+                'items': items
+            }
+
+            return render(request, "main.html", context)
+        ```
+        Setelah mengubah fungsi-fungsi yang ada di dalam `views.py`, saya mengimpor fungsi `create_item` ke `urls.py` di _folder_ `main` seperti berikut:<br>
+        ```
+        from main.views import show_main, create_item
+        ```
+        Selain itu, saya juga menambahkan _path_ baru ke dalam `urlpatterns` di _file_ tersebut:<br>
+        ```
+        path('create-item', create_item, name='create_item'),
+        ```
+        Sebelum ke tahap final, saya membuat _file_ HTML baru dengan nama `create_item.html` di direktori `main/templates`. Kode yang saya gunakan:<br>
+        ```
+        {% extends 'base.html' %} 
+
+        {% block content %}
+        <h1>Add New Item</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Add Item"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        {% endblock %}
+        ```
+        Pada tahapan terakhir, saya mengubah isi `main.html` yang ada di direktori `main/templates` dengan kode berikut:<br>
+        ```
+        {% extends 'base.html' %}
+
+        {% block content %}
+            <h1>Coffeeine Page</h1>
+
+            <h5>Name:</h5>
+            <p>{{name}}</p>
+
+            <h5>Class:</h5>
+            <p>{{class}}</p>
+
+            {% with total_items=items|length %}
+                <p>Anda menyimpan {{ total_items }} jenis kopi pada aplikasi ini</p>
+            {% endwith %}
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Description</th>
+            </tr>
+
+            {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
+
+            {% for item in items %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{items.description}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <br />
+
+        <a href="{% url 'main:create_item' %}">
+            <button>
+                Add New Item
+            </button>
+        </a>
+
+        {% endblock content %}
+        ```
+
+
+
+## Bonus Tugas 3
+Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan saya juga menyesuaikan konteksnya dengan `jenis kopi` karena saya membuat aplikasi kopi.
+
+
 ## Referensi Tugas 3
 * Alexandromeo. (2016, November 6). _Perbedaan Method POST dan GET Beserta Fungsinya._ Makinrajin. Retrieved September 17, 2023, from https://makinrajin.com/blog/perbedaan-post-dan-get/
 * Ramadhan, R. (n.d.). _Penjelasan Singkat tentang POST & GET Django._ GitHub Gist. Retrieved September 17, 2023, from https://gist.github.com/rririanto/442f0590578ca3f8648aeba1e25f8762

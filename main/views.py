@@ -6,8 +6,6 @@ from django.core import serializers
 from main.forms import ItemForm
 from main.models import Item #Ga ada di tutorial
 
-
-
 def show_main(request):
     items = Item.objects.all()
 

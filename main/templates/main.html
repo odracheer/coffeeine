@@ -9,6 +9,10 @@
     <h5>Class:</h5>
     <p>{{class}}</p>
 
+    {% with total_items=items|length %}
+        <p>Anda menyimpan {{ total_items }} jenis kopi pada aplikasi ini</p>
+    {% endwith %}
+
 <table>
     <tr>
         <th>Name</th>
