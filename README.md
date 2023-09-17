@@ -207,9 +207,15 @@ Selain test dari template/tutorial 1, saya juga menambahkan test lain yang bergu
 
 <br>
 
+3. JSON sering digunakan dalam pertukaran data antara aplikasi modern karena beberapa hal, yaitu:
+    * JSON adalah format data yang ringan dan efisien. JSON terdiri dari teks biasa. Hal ini membuat data lebih mudah untuk dikirimkan melalui jaringan. JSON juga berukuran lebih kecil daripada format data lain, seperti XML, serta mendukung pengambilan data parsial. Artinya, aplikasi web dapat mengambil hanya bagian dari data yang dibutuhkan sehingga menghemat _bandwidth_ dan waktu.
+    * JSON mudah dibaca oleh manusia dan mesin. JSON menggunakan struktur yang sederhana dan mudah dipahami, baik oleh manusia maupun mesin. Hal ini membuat JSON lebih mudah digunakan untuk pengembangan aplikasi web modern.
+    * JSON didukung oleh berbagai bahasa pemrograman. JSON didukung oleh berbagai bahasa pemrograman, termasuk JavaScript, Python, Java, dan C++. Hal ini membuat JSON lebih mudah untuk digunakan dalam berbagai aplikasi web.
 
+<br>
 
 ## Referensi Tugas 3
 * Alexandromeo. (2016, November 6). _Perbedaan Method POST dan GET Beserta Fungsinya._ Makinrajin. Retrieved September 17, 2023, from https://makinrajin.com/blog/perbedaan-post-dan-get/
 * Ramadhan, R. (n.d.). _Penjelasan Singkat tentang POST & GET Django._ GitHub Gist. Retrieved September 17, 2023, from https://gist.github.com/rririanto/442f0590578ca3f8648aeba1e25f8762
 * Lane, R. (2023, May 17). _What's the Relationship Between XML, JSON, HTML and the Internet?_ DeltaXML. Retrieved September 17, 2023, from https://www.deltaxml.com/blog/xml/whats-the-relationship-between-xml-json-html-and-the-internet/
+* Jaiswal, A. (n.d.). _JSON: Introduction, Benefits, Applications, and Drawbacks._ Turing. Retrieved September 17, 2023, from https://www.turing.com/kb/what-is-json
