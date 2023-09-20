@@ -424,20 +424,20 @@ Selain test dari template/tutorial 1, saya juga menambahkan test lain yang bergu
             Setelah melakukan impor, saya membuat fungsi masing-masing untuk `XML by ID` dan `JSON by ID`. Kedua fungsi tersebut menerima parameter `request` dan `id`. Di dalamnya terdapat variabel `data` untuk menyimpan hasil _query_ dari data dengan ID tertentu yang ada di `Item`. Sama seperti sebelumnya, hal yang membedakan kedua fungsi parameter `serialize` dan parameter `content_type`. Fungsi yang saya buat untuk XML:<br>
             ```
             def show_xml_by_id(request, id):
-                data = Product.objects.filter(pk=id)
+                data = Item.objects.filter(pk=id)
                 return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
             ```
             Fungsi yang saya buat untuk JSON:<br>
             ```
             def show_json_by_id(request, id):
-                data = Product.objects.filter(pk=id)
+                data = Item.objects.filter(pk=id)
                 return HttpResponse(serializers.serialize("json", data), content_type="application/json")
             ```
 
     * **Membuat _routing_ URL untuk masing-masing `views` yang telah ditambahkan pada poin 2.**<br>
     Untuk membuat _routing_ URL untuk masing-masing `views`, langkah yang perlu dilakukan cukup singkat. Hal yang saya lakukan adalah mengimpor semua fungsi yang sudah dibuat sebelumnya ke dalam _file_ `urls.py` yang ada di direktori `main`. Kode yang saya masukkan sebagai berikut:<br>
         ```
-        from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id 
+        from main.views import show_main, create_item, show_xml, show_json, show_xml_by_id, show_json_by_id 
         ```
         Sehabis itu, saya menambahkan beberapa _path_ URL baru ke dalam `urlpatterns`. _Path_ yang saya tambahkan:<br>
         ```
