@@ -172,5 +172,306 @@ Meskipun begitu, suatu aplikasi web berbasis Django tetap bisa dibuat tanpa meng
     * **Perbedaan MVC, MVT, MVVM**<br>
     Ketiganya memiliki kegunaan yang mirip di komponen _Model_. Akan tetapi, komponen lainnya saling membedakan fungsionalitasnya. MVC dan MVT mirip, namun MVC menggunakan komponen _View_-nya untuk memberikan tampilan kepada _user_ sementara MVT menggunakan komponen _Template_ untuk mengatur tampiilan kepada _user_. MVVM juga melakukan hal yang mirip dengan MVC dalam hal pengaturan tampilan, yakni menggunakan _View_. Untuk mengolah datanya dari _Model_, MVC menggunakan _Controller_, MVT menggunakan _View_, dan MVVM menggunakan _ViewModel_. Selain beberapa hal tadi, perbedaan lainnya adalah MVC dan MVT umumnya digunakan sebagai kerangka kerja, tetapi MVVM biasanya digunakan untuk pengembangan aplikasi berbasis UI yang kompleks seperti aplikasi _mobile_.
 
-## Bonus
+## Bonus Tugas 2
 Selain test dari template/tutorial 1, saya juga menambahkan test lain yang berguna untuk mengecek unit models.py yang telah saya buat. Test berjalan dengan lancar.
+
+# Tugas 3 PBP
+## Soal :
+1. Apa perbedaan antara form `POST` dan form `GET` dalam Django?
+2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+4. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara _step-by-step_ (bukan hanya sekadar mengikuti tutorial).
+
+## Jawaban :
+1. Setelah mencari sumber informasi yang menjelaskan tentang form `POST` dan form `GET` di PPT dan internet, saya akan menjabarkan perbedaan antara form `POST` dan form `GET` dalam Django di tabel berikut:
+
+    | Perbedaan               | POST                             | GET                             |
+    |-------------------------|------------------------------------------|---------------------------------| 
+    | Kegunaan                | POST _request_ digunakan untuk mengirim data ke server| GET _request_ digunakan untuk membaca/menerima data dari web server |
+    | Pemanggilan Method      | POST menggunakan $_POST | GET menggunakan $_GET |
+    | Batas Karakter          | Tidak ada batasan ukuran yang ketat dalam jumlah data yang dapat dikirimkan | Panjang URL yang dapat digunakan terbatas sampai 2047 karakter |
+    | Keamanan                | Lebih aman untuk data sensitif karena data tidak terlihat dalam URL | Kurang aman karena data terlihat dalam URL dan dapat dengan mudah dilihat oleh pihak ketiga |
+    | HTTP Status Code        | Jika POST _request_ berhasil, maka server akan mengembalikan kode status HTTP 201 | Jika GET _request_ berhasil, maka server akan mengembalikan kode status HTTP 200 (OK) |
+    | _Input_ Data            | Biasanya, _input_ data dilakukan melalui form | Biasanya, _input_ data dilakukan melalui link |
+
+<br>
+
+2. Dalam konteks pengiriman data, terdapat beberapa perbedaan utama antara XML, JSON, dan HTML. Perbedaan tersebut akan saya jabarkan dalam bentuk tabel:
+
+    | Perbedaan           | XML                        | JSON                              | HTML                        |
+    |---------------------|----------------------------|-----------------------------------|-----------------------------|
+    | Struktur Data       | Hierarkis, berbasis tag     | Berbasis pasangan "key-value"     | Hierarkis, berbasis tag     |
+    | Tujuan Utama        | Pertukaran data antara sistem yang berbeda dan dukungan banyak bahasa | Pertukaran data antara server dan aplikasi web, umum dalam pengembangan aplikasi web modern | Tidak digunakan untuk pertukaran data, digunakan untuk membuat tampilan dan struktur halaman web |
+    | Keterbacaan manusia | Lebih sulit dibaca manusia | Mudah dibaca oleh manusia | Relatif mudah dibaca oleh manusia karena dirancang untuk menafsirkan dan menyusun teks, gambar, dan materi lain di web |
+    | Ekstensibilitas     | Sangat ekstensibel dengan DTD atau XML Schema | Kurang ekstensibel, struktur data lebih sederhana | Tidak ekstensibel, aturan dan elemen sudah ditentukan |
+
+<br>
+
+3. JSON sering digunakan dalam pertukaran data antara aplikasi modern karena beberapa hal, yaitu:
+    * JSON adalah format data yang ringan dan efisien. JSON terdiri dari teks biasa. Hal ini membuat data lebih mudah untuk dikirimkan melalui jaringan. JSON juga berukuran lebih kecil daripada format data lain, seperti XML, serta mendukung pengambilan data parsial. Artinya, aplikasi web dapat mengambil hanya bagian dari data yang dibutuhkan sehingga menghemat _bandwidth_ dan waktu.
+    * JSON mudah dibaca oleh manusia dan mesin. JSON menggunakan struktur yang sederhana dan mudah dipahami, baik oleh manusia maupun mesin. Hal ini membuat JSON lebih mudah digunakan untuk pengembangan aplikasi web modern.
+    * JSON didukung oleh berbagai bahasa pemrograman. JSON didukung oleh berbagai bahasa pemrograman, termasuk JavaScript, Python, Java, dan C++. Hal ini membuat JSON lebih mudah untuk digunakan dalam berbagai aplikasi web.
+
+<br>
+
+4. Untuk mengimplementasikan _checklist_ di atas secara _step-by-step_, saya akan menjabarkan setiap poin satu per satu.
+    * **Membuat input `form` untuk menambahkan objek model pada app sebelumnya.**<br>
+    Sebelum membuat input `form`, saya masuk ke `urls.py` yang ada di dalam folder `coffeeine` untuk mengubah _path_ `main/` menjadi `''` dengan kode berikut:<br>
+        ```
+        urlpatterns = [
+            path('', include('main.urls')),
+            path('admin/', admin.site.urls),
+        ]
+        ```
+        Hal ini penting agar lebih sesuai dengan konvensi yang ada. Karena `urlpatterns` sudah diubah, kita harus membuat suatu _skeleton_ yang berfungsi sebagai kerangka _views_ sehingga mengurangi redundansi kode. Pertama, saya membuat _folder_ `templates` di dalam direktori utama. Di dalamnya, saya membuat suatu _file_ dengan nama `base.html` yang menjadi kerangka umum halaman web. Saya mengisi _file_ tersebut dengan kode berikut: <br>
+        ```
+        {% load static %}
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
+                {% block meta %}
+                {% endblock meta %}
+            </head>
+
+            <body>
+                {% block content %}
+                {% endblock content %}
+            </body>
+        </html>
+        ```
+        Setelah itu, saya membuka `settings.py` yang ada di direktori proyek `coffeeine` untuk mengganti isi variabel TEMPLATES dengan kode berikut:<br>
+        ```
+        TEMPLATES = [
+            {
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'DIRS': [BASE_DIR / 'templates'],
+                'APP_DIRS': True,
+                ...
+            }
+        ]
+        ```
+        Setelah semua proses tersebut dilakukan, saya baru memulai membuat form input. Awalnya, saya membuat _file_ dengan nama `forms.py` di direktori `main`. Berikut adalah kode yang saya gunakan:<br>
+        ```
+        from django.forms import ModelForm
+        from main.models import Item
+
+        class ItemForm(ModelForm):
+            class Meta:
+                model = Item
+                fields = ["name", "price", "amount", "description"]
+        ```
+        Tahapan selanjutnya adalah membuat fungsi baru untuk menambahkan Item dengan nama `create_item` yang memiliki parameter `request`. Tetapi, sebelumnya kita harus mengimpor beberapa fungsi di bagian paling atas:<br>
+        ```
+        from django.http import HttpResponseRedirect
+        from main.forms import ItemForm
+        from django.urls import reverse
+        from main.models import Item #Ga ada di tutorial
+        ```
+        Jika sudah, maka kita langsung ke bagian pembuatan fungsi. Kode yang saya gunakan:<br>
+        ```
+        def create_item(request):
+            form = ItemForm(request.POST or None)
+
+            if form.is_valid() and request.method == "POST":
+                form.save()
+                return HttpResponseRedirect(reverse('main:show_main'))
+
+            context = {'form': form}
+            return render(request, "create_item.html", context)
+        ```
+        Selain itu, tak lupa saya mengubah fungsi `show_main` yang sebelumnya pernah dibuat dengan kode berikut:<br>
+        ```
+        def show_main(request):
+            items = Item.objects.all()
+
+            context = {
+                'name': 'Ricardo Palungguk Natama', 
+                'class': 'PBP C', 
+                'items': items
+            }
+
+            return render(request, "main.html", context)
+        ```
+        Setelah mengubah fungsi-fungsi yang ada di dalam `views.py`, saya mengimpor fungsi `create_item` ke `urls.py` di _folder_ `main` seperti berikut:<br>
+        ```
+        from main.views import show_main, create_item
+        ```
+        Selain itu, saya juga menambahkan _path_ baru ke dalam `urlpatterns` di _file_ tersebut:<br>
+        ```
+        path('create-item', create_item, name='create_item'),
+        ```
+        Sebelum ke tahap final, saya membuat _file_ HTML baru dengan nama `create_item.html` di direktori `main/templates`. Kode yang saya gunakan:<br>
+        ```
+        {% extends 'base.html' %} 
+
+        {% block content %}
+        <h1>Add New Item</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Add Item"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        {% endblock %}
+        ```
+        Pada tahapan terakhir, saya mengubah isi `main.html` yang ada di direktori `main/templates` dengan kode berikut:<br>
+        ```
+        {% extends 'base.html' %}
+
+        {% block content %}
+            <h1>Coffeeine Page</h1>
+
+            <h5>Name:</h5>
+            <p>{{name}}</p>
+
+            <h5>Class:</h5>
+            <p>{{class}}</p>
+
+            {% with total_items=items|length %}
+                <p>Anda menyimpan {{ total_items }} jenis kopi pada aplikasi ini</p>
+            {% endwith %}
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Description</th>
+            </tr>
+
+            {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
+
+            {% for item in items %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{items.description}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <br />
+
+        <a href="{% url 'main:create_item' %}">
+            <button>
+                Add New Item
+            </button>
+        </a>
+
+        {% endblock content %}
+        ```
+
+    * **Tambahkan 5 fungsi `views` untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML _by ID_, dan JSON _by ID_.**<br>
+    Untuk menambahkan 5 fungsi `views`, saya melakukan beberapa langkah sesuai dengan format:<br>
+        * HTML<br>
+        Pertama-tama, saya membuat `base.html` yang berfungsi sebagai kerangka halaman web di _folder_ `templates` dalam direktori utama. Lalu, saya juga mengubah `main.html` dengan melakukan _extends_ terhadap `base.html`. Setelah itu, saya membuat _file_ `forms.py` di direktori `main`. Ketiga hal ini sudah dilakukan di _checklist_ sebelumnya sehingga saya akan fokus ke _file_ `views.py` yang ada di direktori `main`. Saya mengimpor `Item` dari `main.models` dengan kode berikut:<br>
+            ```
+            from main.models import Item
+            ```
+            Setelah melakukan hal tersebut, saya mengubah fungsi `show_main` yang sudah pernah dibuat sebelumnya menjadi seperti ini:<br>
+            ```
+            def show_main(request):
+                items = Item.objects.all()
+
+                context = {
+                    'name': 'Ricardo Palungguk Natama', 
+                    'class': 'PBP C', 
+                    'items': items
+                }
+
+                return render(request, "main.html", context)
+            ```
+        
+        * XML dan JSON<br>
+        Pertama-tama, saya membuka `views.py` yang ada di direktori `main`. Lalu, saya menambahkan beberapa impor seperti berikut:<br>
+            ```
+            from django.http import HttpResponse
+            from django.core import serializers
+            ```
+            Setelah melakukan impor, saya membuat fungsi masing-masing untuk `XML` dan `JSON`. Kedua fungsi tersebut menerima parameter `request` dan di dalamnya terdapat variabel `data` untuk menyimpan hasil _query_ dari seluruh data yang ada di `Item`. Hal yang membedakan kedua fungsi parameter `serialize` dan parameter `content_type`. Fungsi yang saya buat untuk XML:<br>
+            ```
+            def show_xml(request):
+                data = Item.objects.all()
+                return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+            ```
+            Fungsi yang saya buat untuk JSON:<br>
+            ```
+            def show_json(request):
+                data = Item.objects.all()
+                return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+            ```
+
+        * XML _by ID_ dan JSON _by ID_<br>
+        Pertama-tama, saya membuka `views.py` yang ada di direktori `main`. Lalu, saya menambahkan beberapa impor seperti berikut:<br>
+            ```
+                from django.http import HttpResponse
+                from django.core import serializers
+            ```
+            Setelah melakukan impor, saya membuat fungsi masing-masing untuk `XML by ID` dan `JSON by ID`. Kedua fungsi tersebut menerima parameter `request` dan `id`. Di dalamnya terdapat variabel `data` untuk menyimpan hasil _query_ dari data dengan ID tertentu yang ada di `Item`. Sama seperti sebelumnya, hal yang membedakan kedua fungsi parameter `serialize` dan parameter `content_type`. Fungsi yang saya buat untuk XML:<br>
+            ```
+            def show_xml_by_id(request, id):
+                data = Item.objects.filter(pk=id)
+                return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+            ```
+            Fungsi yang saya buat untuk JSON:<br>
+            ```
+            def show_json_by_id(request, id):
+                data = Item.objects.filter(pk=id)
+                return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+            ```
+
+    * **Membuat _routing_ URL untuk masing-masing `views` yang telah ditambahkan pada poin 2.**<br>
+    Untuk membuat _routing_ URL untuk masing-masing `views`, langkah yang perlu dilakukan cukup singkat. Hal yang saya lakukan adalah mengimpor semua fungsi yang sudah dibuat sebelumnya ke dalam _file_ `urls.py` yang ada di direktori `main`. Kode yang saya masukkan sebagai berikut:<br>
+        ```
+        from main.views import show_main, create_item, show_xml, show_json, show_xml_by_id, show_json_by_id 
+        ```
+        Sehabis itu, saya menambahkan beberapa _path_ URL baru ke dalam `urlpatterns`. _Path_ yang saya tambahkan:<br>
+        ```
+        urlpatterns = [
+            ...
+            path('xml/', show_xml, name='show_xml'), 
+            path('json/', show_json, name='show_json'),
+            path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+            path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+            ...
+        ]
+        ```
+        Dengan demikian, kita dapat menjalankan server dan `localhost:8000` untuk melihat data dengan format yang kita inginkan. Jika kita ingin melihat data dalam format XML, kita bisa menjalankan `http://localhost:8000/xml`. Namun, kita dapat menjalankan `http://localhost:8000/xml/[ID]` apabila ingin melihat data dengan format XML secara spesifik berdasarkan IDnya. Di samping itu, kita juga bisa melihat data dalam format JSON dengan menjalankan `http://localhost:8000/json`. Untuk melihat data dengan format JSON secara spesifik berdasarkan ID, kita bisa menjalankan `http://localhost:8000/json/[ID]`. Untuk HTML, kita cukup menjalankan `http://localhost:8000` karena pada dasarnya data sudah dalam bentuk HTML. Namun, jika kita ingin melihat format HTML secara spesifik, disarankan untuk menggunakan Postman agar data dalam format HTML terlihat.
+    
+    <br>
+
+    * **Mengakses kelima URL di poin 2 menggunakan Postman, membuat _screenshot_ dari hasil akses URL pada Postman, dan menambahkannya ke dalam `README.md.`**<br>
+    Berikut adalah hasil akses URL pada Postman dalam bentuk _screenshot_:<br>
+        * HTML<br>
+        ![HTML image](https://i.imgur.com/tEP2ECA.png)
+        * XML<br>
+        ![XML image](https://i.imgur.com/2jQd29U.png)
+        * JSON <br>
+        ![JSON image](https://i.imgur.com/5nTPsYK.png)
+        * XML _by_ ID<br>
+        ![XML by ID image](https://i.imgur.com/wfFIdsl.png)
+        * JSON _by_ ID<br>
+        ![JSON by ID image](https://i.imgur.com/z13OnOM.png)
+
+## Bonus Tugas 3
+Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan saya juga menyesuaikan konteksnya dengan `jenis kopi` karena saya membuat aplikasi kopi.
+
+## Referensi Tugas 3
+* Alexandromeo. (2016, November 6). _Perbedaan Method POST dan GET Beserta Fungsinya._ Makinrajin. Retrieved September 17, 2023, from https://makinrajin.com/blog/perbedaan-post-dan-get/
+* Ramadhan, R. (n.d.). _Penjelasan Singkat tentang POST & GET Django._ GitHub Gist. Retrieved September 17, 2023, from https://gist.github.com/rririanto/442f0590578ca3f8648aeba1e25f8762
+* Lane, R. (2023, May 17). _What's the Relationship Between XML, JSON, HTML and the Internet?_ DeltaXML. Retrieved September 17, 2023, from https://www.deltaxml.com/blog/xml/whats-the-relationship-between-xml-json-html-and-the-internet/
+* Jaiswal, A. (n.d.). _JSON: Introduction, Benefits, Applications, and Drawbacks._ Turing. Retrieved September 17, 2023, from https://www.turing.com/kb/what-is-json
