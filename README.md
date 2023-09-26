@@ -515,7 +515,158 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
 
 <br>
 
-5. 
+5. Untuk mengimplementasikan _checklist_ di atas secara _step-by-step_, saya akan menjabarkan setiap poin satu per satu.
+    * **Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.**<br>
+    Pertama-tama, saya membuat fungsi registrasi terlebih dahulu. Saya membuka `views.py` yang ada di direktori `main` lalu menambahkan impor sebagai berikut:<br>
+        ```
+        from django.shortcuts import redirect
+        from django.contrib.auth.forms import UserCreationForm
+        from django.contrib import messages  
+        import datetime
+        from django.http import HttpResponseRedirect
+        from django.urls import reverse
+        ```
+        Saya mengimpor fungsi `redirect` dan `messages` serta _built-in form_ `UserCreationForm` dari Django untuk membuat formulir pendaftaran pengguna ke dalam aplikasi _web_. Fungsi yang tersisa akan digunakan untuk menghubungkan data dengan _cookie_ serta membuat fungsi `login` dan `logout` berdasarkan _cookie_ pengguna.Setelah itu, saya membuat fungsi `register` di bawahnya yang berisi kode berikut:<br>
+        ```
+        def register(request):
+            form = UserCreationForm()
+
+            if request.method == "POST":
+                form = UserCreationForm(request.POST)
+                if form.is_valid():
+                    form.save()
+                    messages.success(request, 'Your account has been successfully created!')
+                    return redirect('main:login')
+            context = {'form':form}
+            return render(request, 'register.html', context)
+        ```
+        Setelah itu, kita perlu membuat suatu _file_ HTML yang akan memberikan tampilan kepada pengguna dengan nama `register.html` di dalam direktori `main/templates`. Saya mengisi _file_ tersebut dengan kode berikut:<br>
+        ```
+        {% extends 'base.html' %}
+
+        {% block meta %}
+            <title>Register</title>
+        {% endblock meta %}
+
+        {% block content %}  
+
+        <div class = "login">
+            
+            <h1>Register</h1>  
+
+                <form method="POST" >  
+                    {% csrf_token %}  
+                    <table>  
+                        {{ form.as_table }}  
+                        <tr>  
+                            <td></td>
+                            <td><input type="submit" name="submit" value="Daftar"/></td>  
+                        </tr>  
+                    </table>  
+                </form>
+
+            {% if messages %}  
+                <ul>   
+                    {% for message in messages %}  
+                        <li>{{ message }}</li>  
+                        {% endfor %}  
+                </ul>   
+            {% endif %}
+
+        </div>  
+
+        {% endblock content %}
+        ```
+        Selanjutnya, saya membuka `urls.py` yang ada di direktori `main`. Saya mengimpor kode `from main.views import register` dan menambahkan _path url_ `path('register/', register, name='register'),` ke dalam `urlpatterns` agar halaman _register_ dapat diakses oleh pengguna. Tahapan berikutnya adalah membuat fungsi `login`. Saya kembali membuka `views.py` untuk menambahkan impor `from django.contrib.auth import authenticate, login`. Setelah itu, saya membuat fungsi `login_user` menggunakan fungsi `authenticate` dan `login` yang sebelumnya diimpor dengan kode berikut:<br>
+        ```
+        def login_user(request):
+            if request.method == 'POST':
+                username = request.POST.get('username')
+                password = request.POST.get('password')
+                user = authenticate(request, username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    response = HttpResponseRedirect(reverse("main:show_main")) 
+                    response.set_cookie('last_login', str(datetime.datetime.now()))
+                    return response
+                else:
+                    messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+            context = {}
+            return render(request, 'login.html', context)
+        ```
+        Saya kembali membuat sebuah _file_ baru dengan nama `login.html` sebagai `templates` yang akan ditampilkan ke pengguna. Lalu, saya mengisi _file_ tersebut dengan kode berikut:<br>
+        ```
+        {% extends 'base.html' %}
+
+        {% block meta %}
+            <title>Login</title>
+        {% endblock meta %}
+
+        {% block content %}
+
+        <div class = "login">
+
+            <h1>Login</h1>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>Username: </td>
+                        <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                    </tr>
+                            
+                    <tr>
+                        <td>Password: </td>
+                        <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><input class="btn login_btn" type="submit" value="Login"></td>
+                    </tr>
+                </table>
+            </form>
+
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}     
+                
+            Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+
+        </div>
+
+        {% endblock content %}
+        ```
+        Langkah terakhir dalam membuat fungsi `login` adalah mengimpor `from main.views import login_user` ke dalam `views.py` yang ada di direktori `main` dan menambahkan _path url_ `path('login/', login_user, name='login'),` ke dalam `urlpatterns`. Setelah itu, saya membuat fungsi `logout`. Langkah-langkah yang dilakukan hampir sama dengan kedua fungsi sebelumnya. Pertama, saya mengimpor kode `from django.contrib.auth import logout` dan membuat fungsi `logout_user` yang menerima parameter `request`. Fungsi ini diisi dengan kode:<br>
+        ```
+        def logout_user(request):
+            logout(request)
+            response = HttpResponseRedirect(reverse('main:login'))
+            response.delete_cookie('last_login')
+            return response
+        ```
+        Berikutnya, saya membuka _file_ `main.html` dan menambahkan kode berikut setelah _hyperlink tag_ untuk _Add New Item_:<br>
+        ```
+        <a href="{% url 'main:logout' %}">
+            <button>
+                Logout
+            </button>
+        </a>
+        ```
+        Terakhir, saya membuka `urls.py` di direktori `main`. Saya melakukan impor `from main.views import logout_user` dan menambahkan _path url_ `path('logout/', logout_user, name='logout'),` ke dalam `urlpatterns` seperti sebelumnya. Untuk memastikan ketiga fungsi ini bisa bekerja dengan efektif, saya mengimpor `from django.contrib.auth.decorators import login_required`. Lalu, saya menambahkan kode `@login_required(login_url='/login')` di atas fungsi `show_main` agar pengguna diwajibkan untuk melakukan _login_ terlebih dahulu sebelum mengakses halaman `main`.
+    
+    <br>
+    
+    * **Membuat dua akun pengguna dengan masing-masing tiga _dummy_ data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.**<br>
+    Untuk membuat akun pengguna, saya melakukan _register_ terlebih dahulu dengan pergi ke halaman `register`. Setelah melakukan _register_ _username_ dan _password_, saya mengulangi langkah tersebut sehingga menghasilkan dua akun yang berbeda. Akun pertama bernama `ricardo` dengan _password_ `pbp12345`. Akun kedua bernama `riland` dengan _password_ yang sama, yakni `pbp12345`. Kemudian, saya melakukan _login_ ke salah satu akun. Setelah itu, halaman saya dipindahkan ke `main` di mana saya bisa menambahkan `Item`. Selanjutnya, saya menambahkan 3 `Item` baru ke akun tersebut. Saya juga melakukan hal yang sama terhadap akun yang lainnya. Alhasil, saya telah menambahkan 3 _dummy_ data ke setiap akun pengguna. Berikut adalah dokumentasinya:<br>
+    ![Kopi Ricardo](https://i.imgur.com/hXs0p7I.png)
+    ![Kopi Ricardo](https://i.imgur.com/v5XLlyP.png)
 
 
 ## Referensi Tugas 4
+* What Are Internet Cookies and What Do They Do? (n.d.). Kaspersky. Retrieved September 26, 2023, from https://www.kaspersky.com/resource-center/definitions/cookies
