@@ -475,3 +475,47 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
 * Ramadhan, R. (n.d.). _Penjelasan Singkat tentang POST & GET Django._ GitHub Gist. Retrieved September 17, 2023, from https://gist.github.com/rririanto/442f0590578ca3f8648aeba1e25f8762
 * Lane, R. (2023, May 17). _What's the Relationship Between XML, JSON, HTML and the Internet?_ DeltaXML. Retrieved September 17, 2023, from https://www.deltaxml.com/blog/xml/whats-the-relationship-between-xml-json-html-and-the-internet/
 * Jaiswal, A. (n.d.). _JSON: Introduction, Benefits, Applications, and Drawbacks._ Turing. Retrieved September 17, 2023, from https://www.turing.com/kb/what-is-json
+
+# Tugas 4 PBP
+## Soal :
+1. Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
+2. Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+3. Apa itu _cookies_ dalam konteks aplikasi _web_, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+4. Apakah penggunaan _cookies_ aman secara default dalam pengembangan _web_, atau apakah ada risiko potensial yang harus diwaspadai?
+5. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+## Jawaban :
+1. UserCreationForm adalah salah satu dari banyak _built-in form_ yang disediakan oleh Django. UserCreationForm digunakan untuk membuat formulir pendaftaran atau registrasi pengguna (_user registration form_) dalam aplikasi _web_ yang dibangun dengan Django. _Form_ ini secara khusus dirancang untuk memudahkan pembuatan dan validasi data yang diperlukan saat membuat akun pengguna baru. `UserCreationForm` mempunyai kelebihan dan kekurangan dalam penggunaannya. Kelebihan `UserCreationForm` adalah sebagai berikut:<br>
+    * Penggunaan yang Mudah: `UserCreationForm` memudahkan pengembang _web_ dalam membuat _form_ pendaftaran dengan cepat. Dengan hanya beberapa baris kode, kita dapat membuat _form_ pendaftaran dengan mudah.
+    * Validasi Otomatis: _Form_ ini mencakup validasi bawaan untuk memastikan bahwa data yang dimasukkan oleh pengguna sesuai dengan aturan yang ditetapkan, seperti penggunaan kata sandi yang cukup kuat dan unik.
+    * Integrasi dengan Model Pengguna Django: Form ini terintegrasi dengan model pengguna bawaan Django (User), yang berarti Anda tidak perlu merancang basis data atau logika pengolahan data tambahan untuk menyimpan informasi pengguna baru. Semua ini diurus oleh Django.<br>
+
+    Namun, ada beberapa kekurangan dari `UserCreationForm`:<br>
+    * Tidak Terlalu Fleksibel: Meskipun `UserCreationForm` cocok untuk penggunaan umum, dalam beberapa kasus, `UserCreationForm` mungkin perlu penyesuaian dengan kebutuhan khusus aplikasi yang dibuat. Ini bisa menjadi lebih rumit dan memerlukan penyesuaian yang lebih besar.
+    * Tidak Dapat Dikonfigurasi dengan Mudah: Beberapa aplikasi memerlukan lebih banyak data pengguna selain nama dan alamat email. Dalam hal ini, `UserCreationForm` akan lebih sulit digunakan karena perlu menambahkan bidang tambahan ke formulir sehingga memerlukan penyesuaian tambahan.
+    * Tampilan Bawaan Tidak Selalu Sesuai: Tampilan bawaan dari `UserCreationForm` mungkin tidak sesuai dengan desain atau tampilan yang diinginkan untuk situs _web_. Kita perlu melakukan penyesuaian untuk mencocokkan penampilan _web_.
+
+<br>
+
+2. Autentikasi adalah proses verifikasi identitas pengguna. Autentikasi memastikan bahwa pengguna yang mencoba mengakses aplikasi adalah orang yang mereka klaim. Dalam konteks Django, autentikasi biasanya melibatkan verifikasi bahwa pengguna telah memasukkan informasi login yang benar, seperti nama pengguna dan kata sandi. Di sisi lain, Otorisasi adalah proses menentukan hak akses pengguna terhadap sumber daya atau fitur tertentu dalam aplikasi. Proses ini menentukan apa yang dapat atau tidak dapat dilakukan oleh pengguna setelah mereka berhasil diautentikasi. Keduanya penting karena keduanya bertanggung jawab dalam memastikan keamanan dan kontrol dalam aplikasi _web_. Tanpa autentikasi, siapa pun dapat mengakses aplikasi, bahkan jika mereka bukan pengguna yang sah. Tanpa otorisasi, pengguna yang sudah diautentikasi dapat memiliki akses yang tidak terkendali ke seluruh aplikasi sehingga dapat mengancam keamanan dan privasi data.
+
+<br>
+
+3. Mengutip dari Kaspersky, _cookies_ adalah potongan kecil data yang disimpan pada perangkat pengguna saat mereka berinteraksi dengan situs _web_. Cookies adalah salah satu cara penting untuk mengelola sesi pengguna dan menyimpan informasi sementara di sisi klien (_browser_ pengguna) selama mereka berinteraksi dengan aplikasi _web_. Dalam konteks aplikasi web, _cookies_ digunakan untuk berbagai tujuan, termasuk otentikasi, pelacakan sesi, dan penyimpanan preferensi pengguna. Django menggunakan _cookies_ untuk mengelola data sesi pengguna. Ketika pengguna pertama kali mengunjungi aplikasi _web_, Django mengirimkan _cookie_ ke _browser_ pengguna yang berisi ID sesi. Setiap kali pengguna melakukan _request_ ke aplikasi web, Django memeriksa cookie untuk ID sesi. Jika ID sesi ditemukan, Django menggunakan ID sesi untuk mengidentifikasi sesi pengguna. Django menggunakan informasi sesi untuk memberikan pengalaman pengguna yang lancar. Setelah sesi kadaluwarsa, cookies sesi akan dihapus dan pengguna perlu melakukan otentikasi lagi jika perlu.
+
+<br>
+
+4. Penggunaan _cookies_ dalam pengembangan web memiliki potensi risiko yang harus diwaspadai. Berikut adalah beberapa risiko potensial yang terkait dengan penggunaan _cookies_:<br>
+    * Pelanggaran Privasi: _Cookies_ dapat digunakan untuk melacak aktivitas pengguna di situs _web_. Jika tidak diatur dengan benar, _cookies_ ini dapat mengumpulkan informasi pribadi tentang pengguna tanpa izin, di mana hal ini merupakan pelanggaran privasi.
+    * _Cookie Theft_: Jika _cookies_ yang berisi data otentikasi atau informasi sensitif lainnya dicuri oleh pihak yang tidak berwenang, ini dapat digunakan untuk mendapatkan akses yang tidak sah ke akun pengguna. Oleh karena itu, penting untuk mengenkripsi _cookie_ yang berisi data sensitif.
+    * _Session Hijacking_: Dalam serangan _session hijacking_, penyerang mencuri ID sesi pengguna dan menggunakannya untuk mendapatkan akses ke akun pengguna tanpa perlu mencuri _cookie_. Ini dapat terjadi jika ID sesi tidak cukup aman atau tidak dienkripsi.
+    * _Cross-Site Scripting_ (XSS): Serangan XSS dapat mengakibatkan _cookies_ pengguna dieksploitasi oleh penyerang. Jika penyerang dapat menyisipkan skrip berbahaya ke dalam situs web yang dilihat oleh pengguna, skrip itu dapat mencuri _cookies_ dan mengirimkannya ke penyerang.
+
+    Oleh karena itu, gunakan _cookies_ secara bertanggung jawab. Informasi disimpan dalam _cookies_ apabila benar-benar diperlukan saja. Lakukan enkripsi _cookies_ untuk melindungi informasi pribadi yang disimpan dalam _cookies_. Izin pengguna juga harus didapatkan sebelum menyimpan _cookies_ yang berisi informasi pribadi.
+
+<br>
+
+5. 
+
+
+## Referensi Tugas 4
