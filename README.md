@@ -667,6 +667,31 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
     ![Kopi Ricardo](https://i.imgur.com/hXs0p7I.png)
     ![Kopi Ricardo](https://i.imgur.com/v5XLlyP.png)
 
+    <br>
+
+    * **Menghubungkan model `Item` dengan `User`.**<br>
+    Untuk menghubungkan model `Item` dengan `User`, langkah awal yang saya lakukan adalah membuka `models.py`. Lalu, saya mengimpor `from django.contrib.auth.models import User` dan menambahkan kode berikut di dalam _file_ `models.py`:<br>
+        ```
+        class Item(models.Model):
+            user = models.ForeignKey(User, on_delete=models.CASCADE)
+        ```
+        Hal ini dilakukan untuk mengasosiasikan sebuah user dengan produk melalui suatu _relationship_. Setelah itu, saya membuka `views.py` di direktori `main` untuk mengubah fungsi `create_item` menjadi seperti ini:<br>
+        ```
+        def create_product(request):
+            form = ProductForm(request.POST or None)
+
+            if form.is_valid() and request.method == "POST":
+                product = form.save(commit=False)
+                product.user = request.user
+                product.save()
+                return HttpResponseRedirect(reverse('main:show_main'))
+        ```
+        Setelah itu, saya mengubah fungsi `show_main` dengan mengganti isi context dengan _key_ 'name' menjadi `'name': request.user.username,`. Karena saya mengubah `models.py`, selanjutnya saya melakukan migrasi. Saya menjalankan `env\Scripts\activate.bat` di _Command Prompt_ dan menuliskan kode `python manage.py makemigrations` untuk melacak semua perubahan. Pada saat terjadi _error_, saya menuliskan `1` sebagai _default value_ bagi `field user` pada semua _row_ yang telah dibuat pada _database_. Lalu, saya mengetik `1` lagi untuk menetapkan user dengan ID `1` pada model yang sudah ada. Terakhir, saya melakukan migrasi dengan mengeksekusi perintah `python manage.py migrate`.
+
+    <br>
+
+    * **Menampilkan detail informasi pengguna yang sedang `logged in` seperti `username` dan menerapkan `cookies` seperti `last login` pada halaman utama aplikasi.**<br>
+    
 
 ## Referensi Tugas 4
 * What Are Internet Cookies and What Do They Do? (n.d.). Kaspersky. Retrieved September 26, 2023, from https://www.kaspersky.com/resource-center/definitions/cookies
