@@ -691,7 +691,23 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
     <br>
 
     * **Menampilkan detail informasi pengguna yang sedang `logged in` seperti `username` dan menerapkan `cookies` seperti `last login` pada halaman utama aplikasi.**<br>
-    
+    Pertama-tama, saya membuka `views.py` di direktori `main`. Karena sebelumnya saya sudah mengimpor `HttpResponseRedirect`, `reverse`, dan `datetime`, saya akan lanjut ke tahapan selanjutnya yakni mengubah isi fungsi `login_user` di blok `if user is not None`:<br>
+        ```
+        if user is not None:
+            login(request, user)
+            response = HttpResponseRedirect(reverse("main:show_main")) 
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+        ```
+        Selanjutnya, saya menambahkan `context` di dalam fungsi `show_main` dengan kode `'last_login': request.COOKIES['last_login']`. Sehabis itu, saya bisa membuat fungsi `logout_user` menjadi seperti berikut:
+        ```
+        def logout_user(request):
+            logout(request)
+            response = HttpResponseRedirect(reverse('main:login'))
+            response.delete_cookie('last_login')
+            return response
+        ```
+        Karena _cookies_ sudah di-_setting_, selanjutnya saya membuka `main.html` dan menambahkan `<h5>Sesi terakhir login: {{ last_login }}</h5>` di antara tabel dan tombol _logout_.
 
 ## Referensi Tugas 4
 * What Are Internet Cookies and What Do They Do? (n.d.). Kaspersky. Retrieved September 26, 2023, from https://www.kaspersky.com/resource-center/definitions/cookies
