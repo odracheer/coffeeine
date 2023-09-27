@@ -707,7 +707,7 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
             response.delete_cookie('last_login')
             return response
         ```
-        Karena _cookies_ sudah di-_setting_, selanjutnya saya membuka `main.html` dan menambahkan `<h5>Sesi terakhir login: {{ last_login }}</h5>` di antara tabel dan tombol _logout_.
+        Karena _cookies_ sudah di-_setting_, selanjutnya saya membuka `main.html` dan menambahkan `<h5>Sesi terakhir login: {{ last_login }}</h5>` di antara tabel dan tombol _logout_. Lalu, kita tinggal melakukan _refresh_ apabila server sudah dijalankan sebelumnya. Untuk melihat data _cookies_ `last login`, kita bisa melakukan _inspect element_ dan mengecek di bagian `Application/Storage`. Kita hanya perlu melakukan klik terhadap `Cookies` lalu kita bisa melihat data _cookies_ yang tersedia.
 
 ## Referensi Tugas 4
 * What Are Internet Cookies and What Do They Do? (n.d.). Kaspersky. Retrieved September 26, 2023, from https://www.kaspersky.com/resource-center/definitions/cookies
