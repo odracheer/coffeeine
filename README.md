@@ -6,6 +6,9 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
 
 # **Ricardo Palungguk Natama - 2206082700 - PBP C**
 
+<details>
+<summary>Tugas 2 PBP</summary>
+
 # Tugas 2 PBP
 ## Soal :
 1. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara _step-by-step_ (bukan hanya sekadar mengikuti tutorial).
@@ -174,6 +177,11 @@ Meskipun begitu, suatu aplikasi web berbasis Django tetap bisa dibuat tanpa meng
 
 ## Bonus Tugas 2
 Selain test dari template/tutorial 1, saya juga menambahkan test lain yang berguna untuk mengecek unit models.py yang telah saya buat. Test berjalan dengan lancar.
+
+</details>
+
+<details>
+<summary>Tugas 3 PBP</summary>
 
 # Tugas 3 PBP
 ## Soal :
@@ -476,6 +484,11 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
 * Lane, R. (2023, May 17). _What's the Relationship Between XML, JSON, HTML and the Internet?_ DeltaXML. Retrieved September 17, 2023, from https://www.deltaxml.com/blog/xml/whats-the-relationship-between-xml-json-html-and-the-internet/
 * Jaiswal, A. (n.d.). _JSON: Introduction, Benefits, Applications, and Drawbacks._ Turing. Retrieved September 17, 2023, from https://www.turing.com/kb/what-is-json
 
+</details>
+
+<details>
+<summary>Tugas 4 PBP</summary>
+
 # Tugas 4 PBP
 ## Soal :
 1. Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
@@ -711,3 +724,44 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
 
 ## Referensi Tugas 4
 * What Are Internet Cookies and What Do They Do? (n.d.). Kaspersky. Retrieved September 26, 2023, from https://www.kaspersky.com/resource-center/definitions/cookies
+
+</details>
+
+<details>
+
+<summary>Tugas 5 PBP</summary>
+
+# Tugas 5 PBP
+## Soal :
+1. Jelaskan manfaat dari setiap _element selector_ dan kapan waktu yang tepat untuk menggunakannya.
+2. Jelaskan HTML5 Tag yang kamu ketahui.
+3. Jelaskan perbedaan antara _margin_ dan _padding_.
+4. Jelaskan perbedaan antara _framework_ CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+5. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara _step-by-step_ (bukan hanya sekadar mengikuti tutorial).
+
+## Jawaban :
+1. Setiap _element selector_ memiliki manfaat dan waktu penggunaannya masing-masing. Berikut adalah penjelasannya:
+
+    * <strong><em>Universal Selector </em>(`*`)</strong><br>
+        * Manfaat: Universal selector digunakan untuk memilih semua elemen dalam dokumen HTML.<br>
+        * Waktu yang Tepat: _Selector_ ini berguna jika kita ingin menerapkan suatu _style_ dasar ke seluruh elemen.<br>
+        
+    * <strong><em>Element Type Selector </em>(`p`, `h1`, `div`, etc.)</strong><br>
+        * Manfaat: _Element type selector_ digunakan untuk memilih elemen berdasarkan jenis atau nama elemennya (seperti paragraf, judul, atau _container_ elemen/div). <br>
+        * Waktu yang Tepat: _Selector_ ini berguna jika kita ingin menerapkan _style_ tertentu terhadap satu atau beberapa jenis elemen dalam dokumen.<br>
+    
+    * <strong><em>Class Selector </em>(`.class-name`)</strong><br>
+        * Manfaat: _Class Selector_ digunakan untuk memilih elemen berdasarkan kelas yang diberikan pada elemen tersebut. Dengan _selector_ ini, kita bisa menerapkan _style_ yang sama terhadap beberapa elemen yang memiliki kelas yang sama.<br>
+        * Waktu yang Tepat: _Selector_ ini berguna jika kita ingin membuat _style_ yang sama terhadap elemen-elemen dengan kelas yang sama, tetapi tidak ingin memengaruhi elemen-elemen lain.<br>
+
+    * <strong><em>ID Selector </em>(`#element-id``)</strong><br>
+        * Manfaat: _ID selector_ digunakan untuk memilih elemen berdasarkan ID uniknya. Oleh karena itu, kita dapat menerapkan _style_ terhadap satu elemen khusus.<br>
+        * Waktu yang Tepat: _Selector_ ini berguna ketika kita ingin menargetkan elemen tertentu untuk penerapan suatu _style_ atau perilaku khusus.<br>
+
+    * <strong><em>Grouping Selector </em>(`h1, h2, h3`, etc.)</strong><br>
+        * Manfaat: _Grouping Selector_ digunakan untuk memilih beberapa elemen secara bersamaan sehingga tidak perlu melakukan _styling_ yang berulang terhadap beberapa elemen yang memiliki _style_ yang sama. Penggunaan _selector_ ini dapat mengurangi redundansi kode.
+        * Waktu yang Tepat: _Selector_ ini berguna ketika kita ingin menargetkan beberapa elemen untuk penerapan _style_ yang sama.
+
+
+
+</details>

@@ -1,6 +1,7 @@
 from django.urls import path, include
 from main.views import show_main, create_item, show_xml, show_json, show_xml_by_id, show_json_by_id, \
                        register, login_user, logout_user
+from . import views
 
 app_name = 'main'
 
