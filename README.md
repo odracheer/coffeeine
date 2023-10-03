@@ -754,7 +754,7 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
         * Manfaat: _Class Selector_ digunakan untuk memilih elemen berdasarkan kelas yang diberikan pada elemen tersebut. Dengan _selector_ ini, kita bisa menerapkan _style_ yang sama terhadap beberapa elemen yang memiliki kelas yang sama.<br>
         * Waktu yang Tepat: _Selector_ ini berguna jika kita ingin membuat _style_ yang sama terhadap elemen-elemen dengan kelas yang sama, tetapi tidak ingin memengaruhi elemen-elemen lain.<br>
 
-    * <strong><em>ID Selector </em>(`#element-id``)</strong><br>
+    * <strong><em>ID Selector </em>(`#element-id`)</strong><br>
         * Manfaat: _ID selector_ digunakan untuk memilih elemen berdasarkan ID uniknya. Oleh karena itu, kita dapat menerapkan _style_ terhadap satu elemen khusus.<br>
         * Waktu yang Tepat: _Selector_ ini berguna ketika kita ingin menargetkan elemen tertentu untuk penerapan suatu _style_ atau perilaku khusus.<br>
 
@@ -775,5 +775,46 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
     * `<p>` = Tag ini digunakan untuk menjelaskan paragraf dalam suatu halaman _web_.
     * `<footer>` = Tag ini digunakan untuk mendefinisikan _footer_ atau bagian bawah halaman _web_.
     * `<details>-<summary>` = Tag ini digunakan untuk membuat elemen yang dapat dibuka-tutup, di mana `<details>` adalah konten yang disembunyikan dan `<summary>` adalah judul dari konten tersebut.
+
+    <br>
+
+3. Perbedaan antara _margin_ dan _padding_ saya jabarkan dalam tabel berikut:<br>
+
+    | Aspek         | Margin                                        | Padding                                          |
+    |---------------|-----------------------------------------------|--------------------------------------------------|
+    | **Definisi**  | _Margin_ adalah ruang di luar elemen HTML, di antara elemen tersebut dan elemen-elemen lain di sekitarnya. | _Padding_ adalah ruang di dalam elemen HTML, di antara batas elemen dan kontennya sendiri. |
+    | **Nilai**     | Dapat berupa nilai negatif atau angka desimal. | Tidak mengizinkan nilai negatif. |
+    | **Penyusunan**| Dapat diatur ke "_auto_."                       | Tidak dapat diatur ke "_auto_." |
+    | **Pengaruh Terhadap Tampilan** | Tidak dipengaruhi oleh _style_ elemen seperti warna latar belakang. | Dipengaruhi oleh _style_ elemen seperti warna latar belakang. |
+
+    <br>
+
+4. Perbedaan antara _framework_ CSS Tailwind dan Bootstrap saya jabarkan dalam tabel berikut:
+
+    | Fitur                                     | Bootstrap                                       | Tailwind CSS                                     |
+    |-------------------------------------------|-------------------------------------------------|--------------------------------------------------|
+    | **Popularitas**                           | Salah satu _framework_ HTML, CSS, & JS paling populer digunakan untuk membuat aplikasi responsif yang berfokus pada perangkat _mobile_. | _Framework_ CSS paling populer digunakan untuk membuat _interface_ pengguna yang fleksibel. |
+    | **Tema dan _Template_**                   | Menyediakan tema dan _template_ siap pakai.        | Tidak menyediakan tema atau _template_ siap pakai.        |
+    | **Kelas Utilitas**                        | Menawarkan kelas-kelas utilitas yang unik.      | Menggunakan kelas-kelas utilitas secara ekstensif. |
+    | **Konsistensi Aplikasi**                  | Aplikasi yang dibuat dengan Bootstrap umumnya serupa karena sudah memiliki _template_ bawaan. | Aplikasi dan situs _web_ yang dibuat dengan Tailwind CSS bersifat unik dan fleksibel. |
+    | **Kematangan**                            | _Framework_ yang lebih tua yang dikenal karena responsif dan efisiensinya sehingga menghemat banyak waktu pengembang. | Framework yang lebih baru dan masih terus berkembang. |
+    | **Ukuran File**                           | Memerlukan ukuran _file_ yang lebih besar.       | Memerlukan ukuran _file_ yang lebih kecil.          |
+    | **Perusahaan Terkenal yang Menggunakan** | Twitter, LinkedIn, Spotify, StackShare.         | MAKE IT, Superchat, Hashnode, Livestorm.          |
+    | **Kemudahan Belajar**                     | Memiliki kurva pembelajaran yang lebih curam karena memerlukan pemahaman terhadap kelas-kelas utilitas yang tersedia | Memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan. |
+
+    <br>
+
+5. Untuk mengimplementasikan _checklist_ di atas secara _step-by-step_, saya akan menjabarkan setiap poin satu per satu.
+    * <strong>Kustomisasi halaman _login_, _register_, dan tambah inventori semenarik mungkin.</strong><br>
+    
+
+
+
+## Referensi Tugas 5
+* _CSS Selectors._ (n.d.). W3Schools. Retrieved October 3, 2023, from https://www.w3schools.com/css/css_selectors.asp
+* _HTML5 - Tags Reference._ (n.d.). Tutorialspoint. Retrieved October 3, 2023, from https://www.tutorialspoint.com/html5/html5_tags.htm
+* Jain, S. (2023, June 5). _CSS Padding vs Margin._ GeeksforGeeks. Retrieved October 3, 2023, from https://www.geeksforgeeks.org/css-padding-vs-margin/
+* Kumari, R. (2023, September 12). _Tailwind CSS Vs Bootstrap._ Tutorialspoint. Retrieved October 4, 2023, from https://www.tutorialspoint.com/tailwind-css-vs-bootstrap
+
 
 </details>
