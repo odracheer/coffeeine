@@ -759,9 +759,21 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
         * Waktu yang Tepat: _Selector_ ini berguna ketika kita ingin menargetkan elemen tertentu untuk penerapan suatu _style_ atau perilaku khusus.<br>
 
     * <strong><em>Grouping Selector </em>(`h1, h2, h3`, etc.)</strong><br>
-        * Manfaat: _Grouping Selector_ digunakan untuk memilih beberapa elemen secara bersamaan sehingga tidak perlu melakukan _styling_ yang berulang terhadap beberapa elemen yang memiliki _style_ yang sama. Penggunaan _selector_ ini dapat mengurangi redundansi kode.
-        * Waktu yang Tepat: _Selector_ ini berguna ketika kita ingin menargetkan beberapa elemen untuk penerapan _style_ yang sama.
+        * Manfaat: _Grouping Selector_ digunakan untuk memilih beberapa elemen secara bersamaan sehingga tidak perlu melakukan _styling_ yang berulang terhadap beberapa elemen yang memiliki _style_ yang sama. Penggunaan _selector_ ini dapat mengurangi redundansi kode.<br>
+        * Waktu yang Tepat: _Selector_ ini berguna ketika kita ingin menargetkan beberapa elemen untuk penerapan _style_ yang sama.<br>
 
+    <br>
 
+2. Berikut adalah penjelasan mengenai beberapa HTML5 Tag yang saya ketahui:
+    * `<header>` = Tag ini digunakan untuk mendefinisikan header atau bagian atas halaman _web_.
+    * `<nav>` = Tag ini digunakan untuk menandakan bagian halmaman yang berisi menu navigasi.
+    * `<table>` = Tag ini digunakan untuk menspesifikasikan tabel dalam halaman.
+    * `<br>` = Tag ini digunakan untuk memberikan spasi untuk satu _line_.
+    * `<!DOCTYPE>` = Tag ini digunakan untuk mendefinisikan tipe dokumen
+    * `<button>` = Tag ini digunakan untuk menspesifikasikan tombol/_button_ dalam halaman.
+    * `<h1>-<h6>` = Tag ini digunakan untuk mengatur header berukuran 1-6
+    * `<p>` = Tag ini digunakan untuk menjelaskan paragraf dalam suatu halaman _web_.
+    * `<footer>` = Tag ini digunakan untuk mendefinisikan _footer_ atau bagian bawah halaman _web_.
+    * `<details>-<summary>` = Tag ini digunakan untuk membuat elemen yang dapat dibuka-tutup, di mana `<details>` adalah konten yang disembunyikan dan `<summary>` adalah judul dari konten tersebut.
 
 </details>
