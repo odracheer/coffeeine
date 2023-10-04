@@ -791,7 +791,7 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
 
 4. Perbedaan antara _framework_ CSS Tailwind dan Bootstrap saya jabarkan dalam tabel berikut:
 
-    | Fitur                                     | Bootstrap                                       | Tailwind CSS                                     |
+    | Fitur                                     | Bootstrap                                       | CSS Tailwind                                     |
     |-------------------------------------------|-------------------------------------------------|--------------------------------------------------|
     | **Popularitas**                           | Salah satu _framework_ HTML, CSS, & JS paling populer digunakan untuk membuat aplikasi responsif yang berfokus pada perangkat _mobile_. | _Framework_ CSS paling populer digunakan untuk membuat _interface_ pengguna yang fleksibel. |
     | **Tema dan _Template_**                   | Menyediakan tema dan _template_ siap pakai.        | Tidak menyediakan tema atau _template_ siap pakai.        |
@@ -801,6 +801,8 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
     | **Ukuran File**                           | Memerlukan ukuran _file_ yang lebih besar.       | Memerlukan ukuran _file_ yang lebih kecil.          |
     | **Perusahaan Terkenal yang Menggunakan** | Twitter, LinkedIn, Spotify, StackShare.         | MAKE IT, Superchat, Hashnode, Livestorm.          |
     | **Kemudahan Belajar**                     | Memiliki kurva pembelajaran yang lebih curam karena memerlukan pemahaman terhadap kelas-kelas utilitas yang tersedia | Memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan. |
+
+    Waktu yang tepat untuk menggunakan Bootstrap adalah ketika kita ingin membangun tampilan situs _web_ dengan komponen yang sudah ada karena Bootstrap sudah menyediakan _template_ untuk digunakan. Selain itu, Bootstrap digunakan ketika proyek yang dibuat membutuhkan desain yang konsisten dan tidak memerlukan penyesuaian tingkat tinggi. Di sisi lain, CSS Tailwind digunakan ketika tingkat kustomisasi yang tinggi dan mengontrol setiap aspek desain. Penggunaan CSS Tailwind juga biasa dilakukan pada saat kita ingin mengutamakan ukuran _file_ CSS yang kecil dan memaksimalkan fleksibilitas dalam merancang tampilan yang unik.
 
     <br>
 
