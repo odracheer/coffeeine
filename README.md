@@ -6,6 +6,9 @@ Link to Coffeeine 🔗: [https://coffeeine.adaptable.app/main/](https://coffeein
 
 # **Ricardo Palungguk Natama - 2206082700 - PBP C**
 
+<details>
+<summary>Tugas 2 PBP</summary>
+
 # Tugas 2 PBP
 ## Soal :
 1. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara _step-by-step_ (bukan hanya sekadar mengikuti tutorial).
@@ -174,6 +177,11 @@ Meskipun begitu, suatu aplikasi web berbasis Django tetap bisa dibuat tanpa meng
 
 ## Bonus Tugas 2
 Selain test dari template/tutorial 1, saya juga menambahkan test lain yang berguna untuk mengecek unit models.py yang telah saya buat. Test berjalan dengan lancar.
+
+</details>
+
+<details>
+<summary>Tugas 3 PBP</summary>
 
 # Tugas 3 PBP
 ## Soal :
@@ -476,6 +484,11 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
 * Lane, R. (2023, May 17). _What's the Relationship Between XML, JSON, HTML and the Internet?_ DeltaXML. Retrieved September 17, 2023, from https://www.deltaxml.com/blog/xml/whats-the-relationship-between-xml-json-html-and-the-internet/
 * Jaiswal, A. (n.d.). _JSON: Introduction, Benefits, Applications, and Drawbacks._ Turing. Retrieved September 17, 2023, from https://www.turing.com/kb/what-is-json
 
+</details>
+
+<details>
+<summary>Tugas 4 PBP</summary>
+
 # Tugas 4 PBP
 ## Soal :
 1. Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
@@ -711,3 +724,747 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
 
 ## Referensi Tugas 4
 * What Are Internet Cookies and What Do They Do? (n.d.). Kaspersky. Retrieved September 26, 2023, from https://www.kaspersky.com/resource-center/definitions/cookies
+
+</details>
+
+<details>
+
+<summary>Tugas 5 PBP</summary>
+
+# Tugas 5 PBP
+## Soal :
+1. Jelaskan manfaat dari setiap _element selector_ dan kapan waktu yang tepat untuk menggunakannya.
+2. Jelaskan HTML5 Tag yang kamu ketahui.
+3. Jelaskan perbedaan antara _margin_ dan _padding_.
+4. Jelaskan perbedaan antara _framework_ CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+5. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas secara _step-by-step_ (bukan hanya sekadar mengikuti tutorial).
+
+## Jawaban :
+1. Setiap _element selector_ memiliki manfaat dan waktu penggunaannya masing-masing. Berikut adalah penjelasannya:
+
+    * <strong><em>Universal Selector </em>(`*`)</strong><br>
+        * Manfaat: Universal selector digunakan untuk memilih semua elemen dalam dokumen HTML.<br>
+        * Waktu yang Tepat: _Selector_ ini berguna jika kita ingin menerapkan suatu _style_ dasar ke seluruh elemen.<br>
+        
+    * <strong><em>Element Type Selector </em>(`p`, `h1`, `div`, etc.)</strong><br>
+        * Manfaat: _Element type selector_ digunakan untuk memilih elemen berdasarkan jenis atau nama elemennya (seperti paragraf, judul, atau _container_ elemen/div). <br>
+        * Waktu yang Tepat: _Selector_ ini berguna jika kita ingin menerapkan _style_ tertentu terhadap satu atau beberapa jenis elemen dalam dokumen.<br>
+    
+    * <strong><em>Class Selector </em>(`.class-name`)</strong><br>
+        * Manfaat: _Class Selector_ digunakan untuk memilih elemen berdasarkan kelas yang diberikan pada elemen tersebut. Dengan _selector_ ini, kita bisa menerapkan _style_ yang sama terhadap beberapa elemen yang memiliki kelas yang sama.<br>
+        * Waktu yang Tepat: _Selector_ ini berguna jika kita ingin membuat _style_ yang sama terhadap elemen-elemen dengan kelas yang sama, tetapi tidak ingin memengaruhi elemen-elemen lain.<br>
+
+    * <strong><em>ID Selector </em>(`#element-id`)</strong><br>
+        * Manfaat: _ID selector_ digunakan untuk memilih elemen berdasarkan ID uniknya. Oleh karena itu, kita dapat menerapkan _style_ terhadap satu elemen khusus.<br>
+        * Waktu yang Tepat: _Selector_ ini berguna ketika kita ingin menargetkan elemen tertentu untuk penerapan suatu _style_ atau perilaku khusus.<br>
+
+    * <strong><em>Grouping Selector </em>(`h1, h2, h3`, etc.)</strong><br>
+        * Manfaat: _Grouping Selector_ digunakan untuk memilih beberapa elemen secara bersamaan sehingga tidak perlu melakukan _styling_ yang berulang terhadap beberapa elemen yang memiliki _style_ yang sama. Penggunaan _selector_ ini dapat mengurangi redundansi kode.<br>
+        * Waktu yang Tepat: _Selector_ ini berguna ketika kita ingin menargetkan beberapa elemen untuk penerapan _style_ yang sama.<br>
+
+    <br>
+
+2. Berikut adalah penjelasan mengenai beberapa HTML5 Tag yang saya ketahui:
+    * `<header>` = Tag ini digunakan untuk mendefinisikan header atau bagian atas halaman _web_.
+    * `<nav>` = Tag ini digunakan untuk menandakan bagian halmaman yang berisi menu navigasi.
+    * `<table>` = Tag ini digunakan untuk menspesifikasikan tabel dalam halaman.
+    * `<br>` = Tag ini digunakan untuk memberikan spasi untuk satu _line_.
+    * `<!DOCTYPE>` = Tag ini digunakan untuk mendefinisikan tipe dokumen
+    * `<button>` = Tag ini digunakan untuk menspesifikasikan tombol/_button_ dalam halaman.
+    * `<h1>-<h6>` = Tag ini digunakan untuk mengatur header berukuran 1-6
+    * `<p>` = Tag ini digunakan untuk menjelaskan paragraf dalam suatu halaman _web_.
+    * `<footer>` = Tag ini digunakan untuk mendefinisikan _footer_ atau bagian bawah halaman _web_.
+    * `<details>-<summary>` = Tag ini digunakan untuk membuat elemen yang dapat dibuka-tutup, di mana `<details>` adalah konten yang disembunyikan dan `<summary>` adalah judul dari konten tersebut.
+
+    <br>
+
+3. Perbedaan antara _margin_ dan _padding_ saya jabarkan dalam tabel berikut:<br>
+
+    | Aspek         | Margin                                        | Padding                                          |
+    |---------------|-----------------------------------------------|--------------------------------------------------|
+    | **Definisi**  | _Margin_ adalah ruang di luar elemen HTML, di antara elemen tersebut dan elemen-elemen lain di sekitarnya. | _Padding_ adalah ruang di dalam elemen HTML, di antara batas elemen dan kontennya sendiri. |
+    | **Nilai**     | Dapat berupa nilai negatif atau angka desimal. | Tidak mengizinkan nilai negatif. |
+    | **Penyusunan**| Dapat diatur ke "_auto_."                       | Tidak dapat diatur ke "_auto_." |
+    | **Pengaruh Terhadap Tampilan** | Tidak dipengaruhi oleh _style_ elemen seperti warna latar belakang. | Dipengaruhi oleh _style_ elemen seperti warna latar belakang. |
+
+    <br>
+
+4. Perbedaan antara _framework_ CSS Tailwind dan Bootstrap saya jabarkan dalam tabel berikut:
+
+    | Fitur                                     | Bootstrap                                       | CSS Tailwind                                     |
+    |-------------------------------------------|-------------------------------------------------|--------------------------------------------------|
+    | **Popularitas**                           | Salah satu _framework_ HTML, CSS, & JS paling populer digunakan untuk membuat aplikasi responsif yang berfokus pada perangkat _mobile_. | _Framework_ CSS paling populer digunakan untuk membuat _interface_ pengguna yang fleksibel. |
+    | **Tema dan _Template_**                   | Menyediakan tema dan _template_ siap pakai.        | Tidak menyediakan tema atau _template_ siap pakai.        |
+    | **Kelas Utilitas**                        | Menawarkan kelas-kelas utilitas yang unik.      | Menggunakan kelas-kelas utilitas secara ekstensif. |
+    | **Konsistensi Aplikasi**                  | Aplikasi yang dibuat dengan Bootstrap umumnya serupa karena sudah memiliki _template_ bawaan. | Aplikasi dan situs _web_ yang dibuat dengan Tailwind CSS bersifat unik dan fleksibel. |
+    | **Kematangan**                            | _Framework_ yang lebih tua yang dikenal karena responsif dan efisiensinya sehingga menghemat banyak waktu pengembang. | Framework yang lebih baru dan masih terus berkembang. |
+    | **Ukuran File**                           | Memerlukan ukuran _file_ yang lebih besar.       | Memerlukan ukuran _file_ yang lebih kecil.          |
+    | **Perusahaan Terkenal yang Menggunakan** | Twitter, LinkedIn, Spotify, StackShare.         | MAKE IT, Superchat, Hashnode, Livestorm.          |
+    | **Kemudahan Belajar**                     | Memiliki kurva pembelajaran yang lebih curam karena memerlukan pemahaman terhadap kelas-kelas utilitas yang tersedia | Memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan. |
+
+    Waktu yang tepat untuk menggunakan Bootstrap adalah ketika kita ingin membangun tampilan situs _web_ dengan komponen yang sudah ada karena Bootstrap sudah menyediakan _template_ untuk digunakan. Selain itu, Bootstrap digunakan ketika proyek yang dibuat membutuhkan desain yang konsisten dan tidak memerlukan penyesuaian tingkat tinggi. Di sisi lain, CSS Tailwind digunakan ketika tingkat kustomisasi yang tinggi dan mengontrol setiap aspek desain. Penggunaan CSS Tailwind juga biasa dilakukan pada saat kita ingin mengutamakan ukuran _file_ CSS yang kecil dan memaksimalkan fleksibilitas dalam merancang tampilan yang unik.
+
+    <br>
+
+5. Untuk mengimplementasikan _checklist_ di atas secara _step-by-step_, saya akan menjabarkan setiap poin satu per satu.
+    * <strong>Kustomisasi halaman _login_, _register_, dan tambah inventori semenarik mungkin.</strong><br>
+    Pertama-tama, saya menambahkan isi `base.html` dengan Bootstrap agar saya bisa mengakses fitur-fiturnya. Kode yang saya gunakan:
+        ```
+        {% load static %}
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                {% block meta %}
+                {% endblock meta %}
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+                <link rel="stylesheet" type="text/css" href="style.css">
+            </head>
+
+            <body>
+                {% block content %}
+                {% endblock content %}
+            </body>
+        </html>
+        ```
+        Lalu, saya mengubah tampilan beberapa file `.html` yang ada di folder saya. Saya menggunakan _styling_ terhadap tulisan saya dengan CSS dan Bootstrap Package. Untuk bagian `login.html` dan `register.html`, saya menggunakan _container_ `card`.<br>
+        * `login.html`
+            ```
+            {% extends 'base.html' %}
+
+            {% block meta %}
+                <title>Login</title>
+            {% endblock meta %}
+
+            {% block content %}
+
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary {
+                    background-color: green;
+                    background-color: green;
+                    margin-bottom: 15px;
+                }
+
+                .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+                    background-color: darkgreen;
+                    border-color: darkgreen;
+                }
+
+                p {
+                    margin-top: 10px;
+                }
+
+            </style>
+
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                            Coffeeine.
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="text-center">Login</h1>
+                                </div>
+                                <div class="card-body">
+                                    <form method="POST" action="">
+                                        {% csrf_token %}
+                                        <div class="form-group mb-3">
+                                            <label for="username">Username:</label>
+                                            <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="password">Password:</label>
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <input class="btn btn-primary" type="submit" value="Login">
+                                        </div>
+                                    </form>
+                                    {% if messages %}
+                                        <ul class="list-group">
+                                            {% for message in messages %}
+                                                <li class="list-group-item">{{ message }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                    <p>Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock content %}
+            ```
+        * `register.html`
+            ```
+            {% extends 'base.html' %}
+
+            {% block meta %}
+                <title>Register</title>
+            {% endblock meta %}
+
+            {% block content %}  
+
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary {
+                    background-color: green;
+                    border-color: green;
+                    margin-bottom: 15px;
+                }
+
+                .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+                    background-color: darkgreen;
+                    border-color: darkgreen;
+                }
+
+                p {
+                    margin-top: 10px;
+                }
+
+            </style>
+
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                            Coffeeine.
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header text-center"><h1>Register</h1></div>
+                                <div class="card-body">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group mb-3">
+                                            {{ form.username.label_tag }}
+                                            {{ form.username }}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.email.label_tag }}
+                                            {{ form.email }}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.password1.label_tag }}
+                                            {{ form.password1 }}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.password2.label_tag }}
+                                            {{ form.password2 }}
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <input class="btn btn-primary" type="submit" name="submit" value="Register">
+                                        </div>
+                                    </form>
+                                    {% if messages %}
+                                        <ul class="list-group">
+                                            {% for message in messages %}
+                                                <li class="list-group-item">{{ message }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endblock content %}
+            ```
+    
+    * <strong>Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan _approach_ lain seperti menggunakan `Card`.</strong><br>
+    Saya melakukan kustomisasi bentuk dan warna tabel pada halaman `main.html`. Saya juga mengubah beberapa `button` yang digunakan dan mengganti tulisan saat _user_ mengakses _web_. Selain itu, saya juga melakukan kustomisasi `create_item.html` dan `edit.item.html` dengan menggunakan _container_ `Card`. Berikut kodenya:<br>
+
+        * `main.html`
+            ```
+            {% extends 'base.html' %}
+
+            {% block content %}
+
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+                    background-color: green;
+                    margin-bottom: 15px;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                button {
+                    padding: 6px 12px;
+                    background-color: green;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    margin-right: 5px;
+                }
+
+                button.edit {
+                    background-color: green;
+                    border-radius: 10px;
+                    text-align: center;
+                }
+
+                button.edit:hover, button.edit:active, button.edit:focus {
+                    background-color: darkgreen;
+                    border-radius: 10px;
+                }
+
+                button.delete {
+                    background-color: black;
+                    border-radius: 10px;
+                    text-align: center;
+                }
+
+                button.delete:hover, button.delete:active, button.delete:focus {
+                    background-color: #2b2a2a;
+                    border-radius: 10px;
+                }
+
+                td {
+                    border: 1px solid #dddddd;
+                    padding: 8px;
+                    text-align: left; 
+                }
+
+                th {
+                    background-color: #f2f2f2;
+                    text-align: center;
+                    padding: 8px;
+                }   
+
+                tr:hover {
+                    background-color: #ddd;
+                }
+
+                /* Stil teks di textarea */
+                textarea {
+                    width: 100%;
+                    padding: 6px 12px;
+                    border: 1px transparent;
+                    resize:both;
+                    background-color: #ddd;
+                }
+
+                textarea:hover {
+                    background-color: #ddd;
+                }
+
+                h5 {
+                    font-size: 24px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+                    text-align: center;
+                    margin-bottom: 10px; /* Jarak antara h5 dan p */
+                }
+
+                p {
+                    font-size: 18px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+                    text-align: center;
+                    margin-bottom: 20px; /* Jarak antara p dan elemen berikutnya */
+                }
+
+                .button-container {
+                    text-align: center;
+                    margin-top: 10px; /* Sesuaikan dengan jarak atas yang Anda inginkan */
+                    margin-bottom: 10px;
+                }
+
+                .custom-button {
+                    background-color: green;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    cursor: pointer;
+                    margin: 5px;
+                    border-radius: 5px;
+                }
+
+                .custom-button:hover, .custom-button:active, .custom-button:focus {
+                    background-color: darkgreen;
+                }
+
+                .logout-button {
+                    background-color: black;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    cursor: pointer;
+                    margin: 5px;
+                    border-radius: 5px;
+                }
+
+                .logout-button:hover, .logout-button:focus, .logout-button:active {
+                    background-color:#2b2a2a;
+                }
+
+            </style>
+
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                            Coffeeine.
+                        </a>
+                    </div>
+                </nav>
+
+                <h5 class="custom-heading">Halo {{name}} dari kelas {{class}}!</h5>
+
+                {% with total_items=items|length %}
+                    <p>☕ Anda menyimpan {{ total_items }} jenis kopi pada aplikasi ini ☕</p>
+                {% endwith %}
+
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Edit</th>
+                    </tr>
+
+                    {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
+
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>{{ item.amount }}</td>
+                            <td><textarea rows="4" cols="40" readonly style="resize:none;">{{ item.description }}</textarea></td>
+                            <td>
+                                <a href="{% url 'main:edit_item' item.pk %}">
+                                    <button class="edit">Edit</button>
+                                </a>
+                                <a href="{% url 'main:delete_item' item.pk %}" onclick="return confirm('Apakah anda yakin ingin menghapus barang ini?')">
+                                    <button class="delete">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                <h5 style="margin-top: 20px;">Sesi terakhir login: {{ last_login }}</h5>
+                <br />
+
+                <div class="button-container text-center">
+                    <a href="{% url 'main:create_item' %}">
+                        <button class="custom-button">
+                            Add New Item
+                        </button>
+                    </a>
+                    <a href="{% url 'main:logout' %}" onclick="return confirm('Apakah Anda yakin ingin logout?');">
+                        <button class="custom-button logout-button">
+                            Logout
+                        </button>
+                    </a>
+                </div>
+
+            {% endblock content %}
+            ```
+        * `create.item_html`
+            ```
+            {% extends 'base.html' %}
+
+            {% block meta %}
+                <title>Add New Coffee</title>
+            {% endblock meta %}
+
+            {% block content %}
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary {
+                    background-color: green;
+                    border-color: darkgreen;
+                    margin-bottom: 15px;
+                }
+
+                .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+                    background-color: darkgreen;
+                    border-color: darkgreen;
+                }
+
+                .btn-secondary {
+                    background-color: black;
+                    margin-bottom: 15px;
+                }
+
+                .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus {
+                    background-color: #2b2a2a;
+                }
+
+                .card-header {
+                    text-align: center;
+                }
+
+            </style>
+
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                            Coffeeine.
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header"><h1>Add Your New Coffee</h1></div>
+                                <div class="card-body">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <table class="table">
+                                            {{ form.as_table }}
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <input class="btn btn-primary" type="submit" value="Add Coffee">
+                                                    <a class="btn btn-secondary" href="{% url 'main:show_main' %}">Cancel</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock content %}
+            ```
+        * `edit_item.html`
+            ```
+            {% extends 'base.html' %}
+
+            {% block meta %}
+                <title>Edit Coffee</title>
+            {% endblock meta %}
+
+            {% block content %}
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary, .btn-primary:active, .btn-primary:focus {
+                    background-color: green;
+                    border-color: green;
+                    margin-bottom: 15px;
+                }
+
+                .btn-primary:hover{
+                    border-color: darkgreen;
+                    background-color: darkgreen;
+                }
+
+                .btn-secondary {
+                    background-color: black;
+                    margin-bottom: 15px;
+                }
+
+                .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus{
+                    background-color: #2b2a2a;
+                }
+
+                .card-header {
+                    text-align: center;
+                }
+
+            </style>
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                        Coffeeine.
+                    </a>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header"><h1>Your Coffee</h1></div>
+                            <div class="card-body">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <table class="table">
+                                        {{ form.as_table }}
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <input class="btn btn-primary" type="submit" value="Submit Changes">
+                                                <a class="btn btn-secondary" href="{% url 'main:show_main' %}">Cancel</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock content %}
+            ```
+    <br>
+## Referensi Tugas 5
+* _CSS Selectors._ (n.d.). W3Schools. Retrieved October 3, 2023, from https://www.w3schools.com/css/css_selectors.asp
+* _HTML5 - Tags Reference._ (n.d.). Tutorialspoint. Retrieved October 3, 2023, from https://www.tutorialspoint.com/html5/html5_tags.htm
+* Jain, S. (2023, June 5). _CSS Padding vs Margin._ GeeksforGeeks. Retrieved October 3, 2023, from https://www.geeksforgeeks.org/css-padding-vs-margin/
+* Kumari, R. (2023, September 12). _Tailwind CSS Vs Bootstrap._ Tutorialspoint. Retrieved October 4, 2023, from https://www.tutorialspoint.com/tailwind-css-vs-bootstrap
+
+
+</details>

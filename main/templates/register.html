@@ -6,29 +6,100 @@
 
 {% block content %}  
 
-<div class = "login">
-    
-    <h1>Register</h1>  
+<style>
+    .navbar {
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 50px;
+        margin-bottom: 40px;
+    }
 
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>
+    .navbar-brand img {
+        width: 80px; 
+        height: 80px;
+        margin-right: 10px; 
+    }
 
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
+    .navbar-brand {
+        font-size: 60px;
+        font-family: "EB Garamond", serif;
+        color: #ffffff;
+        text-align: center;
+        padding-top: 10px;
+    }
 
-</div>  
+    .navbar-brand:hover {
+        color: #ffffff;
+    }
+
+    .btn-primary {
+        background-color: green;
+        border-color: green;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+        background-color: darkgreen;
+        border-color: darkgreen;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+
+</style>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                Coffeeine.
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center"><h1>Register</h1></div>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.password1.label_tag }}
+                                {{ form.password1 }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.password2.label_tag }}
+                                {{ form.password2 }}
+                            </div>
+                            <div class="form-group text-center">
+                                <input class="btn btn-primary" type="submit" name="submit" value="Register">
+                            </div>
+                        </form>
+                        {% if messages %}
+                            <ul class="list-group">
+                                {% for message in messages %}
+                                    <li class="list-group-item">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock content %}

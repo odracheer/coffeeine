@@ -1,50 +1,212 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Coffeeine Page</h1>
 
-    <h5>Name:</h5>
-    <p>{{name}}</p>
+<style>
+    .navbar {
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 50px;
+        margin-bottom: 40px;
+    }
 
-    <h5>Class:</h5>
-    <p>{{class}}</p>
+    .navbar-brand img {
+        width: 80px; 
+        height: 80px;
+        margin-right: 10px; 
+    }
+
+    .navbar-brand {
+        font-size: 60px;
+        font-family: "EB Garamond", serif;
+        color: #ffffff;
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .navbar-brand:hover {
+        color: #ffffff;
+    }
+
+    .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+        background-color: green;
+        margin-bottom: 15px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    button {
+        padding: 6px 12px;
+        background-color: green;
+        border: none;
+        color: white;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    button.edit {
+        background-color: green;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    button.edit:hover, button.edit:active, button.edit:focus {
+        background-color: darkgreen;
+        border-radius: 10px;
+    }
+
+    button.delete {
+        background-color: black;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    button.delete:hover, button.delete:active, button.delete:focus {
+        background-color: #2b2a2a;
+        border-radius: 10px;
+    }
+
+    td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left; 
+    }
+
+    th {
+        background-color: #f2f2f2;
+        text-align: center;
+        padding: 8px;
+    }   
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    /* Stil teks di textarea */
+    textarea {
+        width: 100%;
+        padding: 6px 12px;
+        border: 1px transparent;
+        resize:both;
+        background-color: #ddd;
+    }
+
+    textarea:hover {
+        background-color: #ddd;
+    }
+
+    h5 {
+        font-size: 24px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+        text-align: center;
+        margin-bottom: 10px; /* Jarak antara h5 dan p */
+    }
+
+    p {
+        font-size: 18px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+        text-align: center;
+        margin-bottom: 20px; /* Jarak antara p dan elemen berikutnya */
+    }
+
+    .button-container {
+        text-align: center;
+        margin-top: 10px; /* Sesuaikan dengan jarak atas yang Anda inginkan */
+        margin-bottom: 10px;
+    }
+
+    .custom-button {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin: 5px;
+        border-radius: 5px;
+    }
+
+    .custom-button:hover, .custom-button:active, .custom-button:focus {
+        background-color: darkgreen;
+    }
+
+    .logout-button {
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin: 5px;
+        border-radius: 5px;
+    }
+
+    .logout-button:hover, .logout-button:focus, .logout-button:active {
+        background-color:#2b2a2a;
+    }
+
+</style>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                Coffeeine.
+            </a>
+        </div>
+    </nav>
+
+    <h5 class="custom-heading">Halo {{name}} dari kelas {{class}}!</h5>
 
     {% with total_items=items|length %}
-        <p>Anda menyimpan {{ total_items }} jenis kopi pada aplikasi ini</p>
+        <p>☕ Anda menyimpan {{ total_items }} jenis kopi pada aplikasi ini ☕</p>
     {% endwith %}
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Amount</th>
-        <th>Description</th>
-    </tr>
-
-    {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
-
-    {% for item in items %}
+    <table>
         <tr>
-            <td>{{item.name}}</td>
-            <td>{{item.price}}</td>
-            <td>{{item.amount}}</td>
-            <td><textarea rows="4" cols="40" readonly style="resize: none;">{{ item.description }}</textarea></td>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Edit</th>
         </tr>
-    {% endfor %}
-</table>
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<br />
+        {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
 
-<a href="{% url 'main:create_item' %}">
-    <button>
-        Add New Item
-    </button>
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
-</a>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.amount }}</td>
+                <td><textarea rows="4" cols="40" readonly style="resize:none;">{{ item.description }}</textarea></td>
+                <td>
+                    <a href="{% url 'main:edit_item' item.pk %}">
+                        <button class="edit">Edit</button>
+                    </a>
+                    <a href="{% url 'main:delete_item' item.pk %}" onclick="return confirm('Apakah anda yakin ingin menghapus barang ini?')">
+                        <button class="delete">Delete</button>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h5 style="margin-top: 20px;">Sesi terakhir login: {{ last_login }}</h5>
+    <br />
+
+    <div class="button-container text-center">
+        <a href="{% url 'main:create_item' %}">
+            <button class="custom-button">
+                Add New Item
+            </button>
+        </a>
+        <a href="{% url 'main:logout' %}" onclick="return confirm('Apakah Anda yakin ingin logout?');">
+            <button class="custom-button logout-button">
+                Logout
+            </button>
+        </a>
+    </div>
 
 {% endblock content %}
