@@ -808,10 +808,658 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
 
 5. Untuk mengimplementasikan _checklist_ di atas secara _step-by-step_, saya akan menjabarkan setiap poin satu per satu.
     * <strong>Kustomisasi halaman _login_, _register_, dan tambah inventori semenarik mungkin.</strong><br>
+    Pertama-tama, saya menambahkan isi `base.html` dengan Bootstrap agar saya bisa mengakses fitur-fiturnya. Kode yang saya gunakan:
+        ```
+        {% load static %}
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                {% block meta %}
+                {% endblock meta %}
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+                <link rel="stylesheet" type="text/css" href="style.css">
+            </head>
+
+            <body>
+                {% block content %}
+                {% endblock content %}
+            </body>
+        </html>
+        ```
+        Lalu, saya mengubah tampilan beberapa file `.html` yang ada di folder saya. Saya menggunakan _styling_ terhadap tulisan saya dengan CSS dan Bootstrap Package. Untuk bagian `login.html` dan `register.html`, saya menggunakan _container_ `card`.<br>
+        * `login.html`
+            ```
+            {% extends 'base.html' %}
+
+            {% block meta %}
+                <title>Login</title>
+            {% endblock meta %}
+
+            {% block content %}
+
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary {
+                    background-color: green;
+                    background-color: green;
+                    margin-bottom: 15px;
+                }
+
+                .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+                    background-color: darkgreen;
+                    border-color: darkgreen;
+                }
+
+                p {
+                    margin-top: 10px;
+                }
+
+            </style>
+
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                            Coffeeine.
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="text-center">Login</h1>
+                                </div>
+                                <div class="card-body">
+                                    <form method="POST" action="">
+                                        {% csrf_token %}
+                                        <div class="form-group mb-3">
+                                            <label for="username">Username:</label>
+                                            <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="password">Password:</label>
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <input class="btn btn-primary" type="submit" value="Login">
+                                        </div>
+                                    </form>
+                                    {% if messages %}
+                                        <ul class="list-group">
+                                            {% for message in messages %}
+                                                <li class="list-group-item">{{ message }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                    <p>Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock content %}
+            ```
+        * `register.html`
+            ```
+            {% extends 'base.html' %}
+
+            {% block meta %}
+                <title>Register</title>
+            {% endblock meta %}
+
+            {% block content %}  
+
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary {
+                    background-color: green;
+                    border-color: green;
+                    margin-bottom: 15px;
+                }
+
+                .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+                    background-color: darkgreen;
+                    border-color: darkgreen;
+                }
+
+                p {
+                    margin-top: 10px;
+                }
+
+            </style>
+
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                            Coffeeine.
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header text-center"><h1>Register</h1></div>
+                                <div class="card-body">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group mb-3">
+                                            {{ form.username.label_tag }}
+                                            {{ form.username }}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.email.label_tag }}
+                                            {{ form.email }}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.password1.label_tag }}
+                                            {{ form.password1 }}
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            {{ form.password2.label_tag }}
+                                            {{ form.password2 }}
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <input class="btn btn-primary" type="submit" name="submit" value="Register">
+                                        </div>
+                                    </form>
+                                    {% if messages %}
+                                        <ul class="list-group">
+                                            {% for message in messages %}
+                                                <li class="list-group-item">{{ message }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endblock content %}
+            ```
     
+    * <strong>Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan _approach_ lain seperti menggunakan `Card`.</strong><br>
+    Saya melakukan kustomisasi bentuk dan warna tabel pada halaman `main.html`. Saya juga mengubah beberapa `button` yang digunakan dan mengganti tulisan saat _user_ mengakses _web_. Selain itu, saya juga melakukan kustomisasi `create_item.html` dan `edit.item.html` dengan menggunakan _container_ `Card`. Berikut kodenya:<br>
 
+        * `main.html`
+            ```
+            {% extends 'base.html' %}
 
+            {% block content %}
 
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+                    background-color: green;
+                    margin-bottom: 15px;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                button {
+                    padding: 6px 12px;
+                    background-color: green;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    margin-right: 5px;
+                }
+
+                button.edit {
+                    background-color: green;
+                    border-radius: 10px;
+                    text-align: center;
+                }
+
+                button.edit:hover, button.edit:active, button.edit:focus {
+                    background-color: darkgreen;
+                    border-radius: 10px;
+                }
+
+                button.delete {
+                    background-color: black;
+                    border-radius: 10px;
+                    text-align: center;
+                }
+
+                button.delete:hover, button.delete:active, button.delete:focus {
+                    background-color: #2b2a2a;
+                    border-radius: 10px;
+                }
+
+                td {
+                    border: 1px solid #dddddd;
+                    padding: 8px;
+                    text-align: left; 
+                }
+
+                th {
+                    background-color: #f2f2f2;
+                    text-align: center;
+                    padding: 8px;
+                }   
+
+                tr:hover {
+                    background-color: #ddd;
+                }
+
+                /* Stil teks di textarea */
+                textarea {
+                    width: 100%;
+                    padding: 6px 12px;
+                    border: 1px transparent;
+                    resize:both;
+                    background-color: #ddd;
+                }
+
+                textarea:hover {
+                    background-color: #ddd;
+                }
+
+                h5 {
+                    font-size: 24px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+                    text-align: center;
+                    margin-bottom: 10px; /* Jarak antara h5 dan p */
+                }
+
+                p {
+                    font-size: 18px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+                    text-align: center;
+                    margin-bottom: 20px; /* Jarak antara p dan elemen berikutnya */
+                }
+
+                .button-container {
+                    text-align: center;
+                    margin-top: 10px; /* Sesuaikan dengan jarak atas yang Anda inginkan */
+                    margin-bottom: 10px;
+                }
+
+                .custom-button {
+                    background-color: green;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    cursor: pointer;
+                    margin: 5px;
+                    border-radius: 5px;
+                }
+
+                .custom-button:hover, .custom-button:active, .custom-button:focus {
+                    background-color: darkgreen;
+                }
+
+                .logout-button {
+                    background-color: black;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    cursor: pointer;
+                    margin: 5px;
+                    border-radius: 5px;
+                }
+
+                .logout-button:hover, .logout-button:focus, .logout-button:active {
+                    background-color:#2b2a2a;
+                }
+
+            </style>
+
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                            Coffeeine.
+                        </a>
+                    </div>
+                </nav>
+
+                <h5 class="custom-heading">Halo {{name}} dari kelas {{class}}!</h5>
+
+                {% with total_items=items|length %}
+                    <p>☕ Anda menyimpan {{ total_items }} jenis kopi pada aplikasi ini ☕</p>
+                {% endwith %}
+
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Edit</th>
+                    </tr>
+
+                    {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
+
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>{{ item.amount }}</td>
+                            <td><textarea rows="4" cols="40" readonly style="resize:none;">{{ item.description }}</textarea></td>
+                            <td>
+                                <a href="{% url 'main:edit_item' item.pk %}">
+                                    <button class="edit">Edit</button>
+                                </a>
+                                <a href="{% url 'main:delete_item' item.pk %}" onclick="return confirm('Apakah anda yakin ingin menghapus barang ini?')">
+                                    <button class="delete">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                <h5 style="margin-top: 20px;">Sesi terakhir login: {{ last_login }}</h5>
+                <br />
+
+                <div class="button-container text-center">
+                    <a href="{% url 'main:create_item' %}">
+                        <button class="custom-button">
+                            Add New Item
+                        </button>
+                    </a>
+                    <a href="{% url 'main:logout' %}" onclick="return confirm('Apakah Anda yakin ingin logout?');">
+                        <button class="custom-button logout-button">
+                            Logout
+                        </button>
+                    </a>
+                </div>
+
+            {% endblock content %}
+            ```
+        * `create.item_html`
+            ```
+            {% extends 'base.html' %}
+
+            {% block meta %}
+                <title>Add New Coffee</title>
+            {% endblock meta %}
+
+            {% block content %}
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary {
+                    background-color: green;
+                    border-color: darkgreen;
+                    margin-bottom: 15px;
+                }
+
+                .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+                    background-color: darkgreen;
+                    border-color: darkgreen;
+                }
+
+                .btn-secondary {
+                    background-color: black;
+                    margin-bottom: 15px;
+                }
+
+                .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus {
+                    background-color: #2b2a2a;
+                }
+
+                .card-header {
+                    text-align: center;
+                }
+
+            </style>
+
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                            Coffeeine.
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header"><h1>Add Your New Coffee</h1></div>
+                                <div class="card-body">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <table class="table">
+                                            {{ form.as_table }}
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <input class="btn btn-primary" type="submit" value="Add Coffee">
+                                                    <a class="btn btn-secondary" href="{% url 'main:show_main' %}">Cancel</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock content %}
+            ```
+        * `edit_item.html`
+            ```
+            {% extends 'base.html' %}
+
+            {% block meta %}
+                <title>Edit Coffee</title>
+            {% endblock meta %}
+
+            {% block content %}
+            <style>
+                .navbar {
+                    background-color: #000;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 50px;
+                    margin-bottom: 40px;
+                }
+
+                .navbar-brand img {
+                    width: 80px; 
+                    height: 80px;
+                    margin-right: 10px; 
+                }
+
+                .navbar-brand {
+                    font-size: 60px;
+                    font-family: "EB Garamond", serif;
+                    color: #ffffff;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+
+                .navbar-brand:hover {
+                    color: #ffffff;
+                }
+
+                .btn-primary, .btn-primary:active, .btn-primary:focus {
+                    background-color: green;
+                    border-color: green;
+                    margin-bottom: 15px;
+                }
+
+                .btn-primary:hover{
+                    border-color: darkgreen;
+                    background-color: darkgreen;
+                }
+
+                .btn-secondary {
+                    background-color: black;
+                    margin-bottom: 15px;
+                }
+
+                .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus{
+                    background-color: #2b2a2a;
+                }
+
+                .card-header {
+                    text-align: center;
+                }
+
+            </style>
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="https://i.imgur.com/S4xLOxr.png" alt="Logo" class="d-inline-block align-text-top">
+                        Coffeeine.
+                    </a>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header"><h1>Your Coffee</h1></div>
+                            <div class="card-body">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <table class="table">
+                                        {{ form.as_table }}
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <input class="btn btn-primary" type="submit" value="Submit Changes">
+                                                <a class="btn btn-secondary" href="{% url 'main:show_main' %}">Cancel</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock content %}
+            ```
+    <br>
 ## Referensi Tugas 5
 * _CSS Selectors._ (n.d.). W3Schools. Retrieved October 3, 2023, from https://www.w3schools.com/css/css_selectors.asp
 * _HTML5 - Tags Reference._ (n.d.). Tutorialspoint. Retrieved October 3, 2023, from https://www.tutorialspoint.com/html5/html5_tags.htm
