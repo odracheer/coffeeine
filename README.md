@@ -1468,3 +1468,250 @@ Saya telah menambahkan pesan "Anda menyimpan X jenis kopi pada aplikasi ini" dan
 
 
 </details>
+
+<details>
+<summary>Tugas 6 PBP</summary>
+
+# Tugas 6 PBP
+## Soal :
+1. Jelaskan perbedaan antara _asynchronous programming_ dengan _synchronous programming_.
+2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma _event-driven programming_. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+3. Jelaskan penerapan _asynchronous programming_ pada AJAX.
+4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada _library_ jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+5. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas _secara step-by-step_ (bukan hanya sekadar mengikuti tutorial).
+
+## Jawaban :
+1. Berikut adalah perbedaan antara _asynchronous programming_ dengan _synchronous programming_:<br>
+
+    | Fitur / Konsep                         | Pemrograman Sinkron                                  | Pemrograman Asinkron                             |
+    | -------------------------------------- | ---------------------------------------------------- | ------------------------------------------------ |
+    | **Urutan Eksekusi**                    | Berurutan dan Blocking                               | Tidak Berurutan dan Non-blocking                 |
+    | **Blocking vs. Non-blocking**          | Memproses dengan cara blokir                         | Memproses tanpa menghentikan eksekusi program    |
+    | **Contoh Kasus Penggunaan**            | Tugas sederhana, perhitungan                         | Operasi I/O, jaringan, responsivitas aplikasi    |
+    | **Konkurensi dan Paralelisme**         | Tidak memanfaatkan multi-core                        | Bisa memanfaatkan multi-core                     |
+    | **Model Pemrograman**                  | Linear, mudah dipahami                               | Kontrol alur yang lebih kompleks                 |
+    | **Alur Pemrograman Berbasis Platform** | Aplikasi berjalan secara berurutan, kurang responsif | Responsif, manajemen sumber daya yang lebih baik |
+
+<br>
+
+2. Paradigma "_event-driven programming_" adalah suatu pendekatan dalam pemrograman di mana program merespons peristiwa (_events_) yang terjadi, seperti tindakan pengguna, perubahan keadaan, atau pesan yang diterima. Istilah "_event_" dalam konteks ini mengacu pada situasi atau kondisi yang memicu reaksi atau pemrosesan tertentu dalam program. Pendekatan ini sering digunakan dalam pengembangan aplikasi yang melibatkan antarmuka pengguna (UI) interaktif, pemrosesan _asynchronous_, dan komunikasi dengan sumber eksternal seperti server atau perangkat lain. Penerapannya dalam tugas ini adalah ...........
+
+<br>
+
+3. Penerapan _asynchronous programming_ pada AJAX memungkinkan kita untuk membuat permintaan ke server web secara asinkron. Artinya, kita tidak perlu menunggu respon dari server sebelum melanjutkan eksekusi program yang berbeda. Hal ini sangat berguna untuk menjaga antarmuka pengguna tetap responsif dan menghindari pengalaman blok yang mungkin muncul dengan permintaan sinkron. Selain itu, kita harus mendefinisikan _event handlers_ untuk menangani respons dari server saat permintaan AJAX selesai. Dengan cara ini, kita dapat menentukan apa yang harus dilakukan program ketika data dari server telah diterima, baik itu menampilkan data ke pengguna, memproses data lebih lanjut, atau melakukan tindakan lain. Setelah mendefinisikan _event handlers_, kita perlu membuat _callback functions_ dalam AJAX untuk menentukan bagaimana menangani respons dari server. _Callback functions_ ini akan dijalankan setelah permintaan selesai.
+
+<br>
+
+4. Dalam pengembangan _web_, kita memerlukan AJAX (Asynchronous JavaScript and XML) untuk mengambil atau mengirim data dari dan ke server tanpa perlu melakukan _refresh_ ulang seluruh halaman. Ada dua teknologi yang biasa digunakan untuk melakukan AJAX,yakni Fetch API dan jQuery. Berikut adalah perbandingan antara kedua teknologi ini:<br>
+
+    | Fitur / Aspek          | Fetch API                              | jQuery                                      |
+    | ---------------------- | -------------------------------------- | ------------------------------------------- |
+    | Ketersediaan           | Bawaan di _browser_ modern             | Membutuhkan pustaka tambahan                |
+    | Gaya Pengkodean        | Promise-based, lebih modern            | Callback-based, lebih tradisional           |
+    | Kompatibilitas         | Lebih rendah di _browser_ lama         | Lebih kuat untuk _browser_ lama             |
+    | Berat                  | Lebih ringan                           | Lebih berat                                 |
+    | Manipulasi DOM         | Terfokus pada permintaan HTTP          | Menyediakan utilitas DOM                    |
+    | Performa               | Dapat lebih cepat dalam beberapa kasus | Bergantung pada implementasi AJAX jQuery    |
+    | Komunitas dan Dukungan | Tren menuju Fetch API                  | Masih banyak proyek yang menggunakan jQuery |
+
+    Kedua teknologi ini memiliki keunggulan dan kelemahan masing-masing. Pilihan tergantung pada konteks proyek dan preferensi individu. Menurut pendapat pribadi saya, Fetch API lebih baik dibandingkan jQuery untuk penerapan AJAX. Fetch API adalah teknologi yang lebih modern, ringan, dan memberikan lebih banyak kendali. Dengan penggunaan Promises, Fetch API memungkinkan penanganan permintaan asinkron yang lebih baik dan lebih mudah dibaca.
+
+<br>
+
+5. Untuk mengimplementasikan _checklist_ di atas secara _step-by-step_, saya akan menjabarkan setiap poin satu per satu.
+    * **AJAX GET**<br>
+        Pertama-tama, saya membuat fungsi di `views.py` dengan nama `get_item_json` yang memiliki parameter `request`. Fungsi ini saya buat untuk mengambil data `Item` berdasarkan _user_. Berikut kode yang saya masukkan:<br>
+        ```
+        def get_item_json(request):
+            item = Item.objects.filter(user = request.user)
+            return HttpResponse(serializers.serialize('json', item))
+        ```
+        Setelah membuat fungsi tersebut, saya membuat tampilan data yang sebelumnya tabel menjadi _cards_. Untuk melakukannya, saya membuka `main.html` lalu menghapus tabel dan menggantinya dengan kode berikut:<br>
+        ```
+        <div class="cards-container"></div>
+        ```
+        Karena saya sudah membuat fungsi tersebut, saya membuat _path_ agar fungsi tersebut dapat diakses oleh `main.html`. Saya memasukkan path di `urls.py` dengan perintah berikut:<br>
+        ```
+        from main.views import get_item_json
+        ...
+        path('get-item/', get_item_json, name='get_item_json'),
+        ```
+        Sehabis itu, saya membuat tag `<script>` dan membuat fungsi _asynchronous_ `getItems` dan `refreshItems`. Fungsi `getItems` ditujukan untuk mengambil data `Item` milik _user_ dengan AJAX GET, sementara `refreshItems` dibuat untuk menampilkan `Item` apa saja yang dimiliki oleh _user_. Berikut kode yang saya tambahkan untuk membuat kedua fungsi tersebut:<br>
+        * `getItems()`
+            ```
+            async function getItems() {
+                return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+            }
+            ```
+        * `refreshItems()`
+            ```
+            async function refreshItems() {
+                const items = await getItems();
+                const cardsContainer = document.querySelector(".cards-container");
+                cardsContainer.innerHTML = "";
+
+                items.forEach((item) => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+                    card.innerHTML = `
+                    <header class="card-header">
+                        <h5 class="card-title">${item.fields.name}</h5>
+                    </header>
+                    <div class="card-body">
+                        <p class="card-text">Price: ${item.fields.price}</p>
+                        <p class="card-text">Amount: ${item.fields.amount}</p>
+                        <p class="card-description">Description: ${item.fields.description}</p>
+                        </div>
+                    <div class="card-footer">
+                        <a href="/edit-item/${item.pk}" class="btn btn-primary">Edit</a>
+                        {% csrf_token %}
+                            <button class="btn btn-secondary" onclick="incrementAmount(${item.pk})">+</button>
+                            <button class="btn btn-secondary" onclick="decrementAmount(${item.pk})">-</button>
+                            <a href="#" class="btn btn-danger" onclick="confirmDelete(${item.pk}); return false;">Delete</a>
+                    </div>
+                    `;
+                    cardsContainer.appendChild(card);
+                });
+            }
+
+            refreshItems()
+            ```
+            Lalu, saya mengatur berbagai macam _styling_ dari _cards_ di bagian tag `<style>`. Setelah saya melakukan semua langkah tersebut, saya sudah bisa mengambil task dengan AJAX GET.
+
+    <br>
+
+    * **AJAX POST**<br>
+        Untuk menerapkan AJAX POST di kode saya, saya membuat _modal_ pada awalnya. Saya menambahkan _modal_ tersebut di `main.html` dengan menuliskan kode berikut:<br>
+        ```
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Your New Coffee</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form" onsubmit="return false;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="col-form-label">Price:</label>
+                                <input type="number" class="form-control" id="price" name="price"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="amount" class="col-form-label">Amount:</label>
+                                <input type="number" class="form-control" id="amount" name="amount"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="description" name="description"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="button_delete"data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Coffee</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        ```
+        Di bagian `views.py`, saya membuat fungsi agar bisa menambahkan `Item` melalui _modal_. Saya mengimpor `HttpResponseNotFound` dan membuat fungsi `add_item_ajax` dengan parameter `request` untuk menambahkan `Item` menggunakan AJAX. Kita juga harus menggunakan @csrf_exempt agar memastikan data hanya datang dari _website_ kita. Berikut kodenya:<br>
+        ```
+        from django.http import HttpResponseNotFound
+        from django.views.decorators.csrf import csrf_exempt
+        ...
+        @csrf_exempt
+        def add_item_ajax(request):
+            if request.method == 'POST':
+                name = request.POST.get("name")
+                price = request.POST.get("price")
+                amount = request.POST.get("amount")
+                description = request.POST.get("description")
+                user = request.user
+
+                new_item = Item(name=name, price=price, amount=amount, description=description, user=user)
+                new_item.save()
+
+                return HttpResponse(b"CREATED", status=201)
+
+            return HttpResponseNotFound()
+        ```
+        Setelah membuat fungsinya, saya menambahkan path berdasarkan ketentuan soal, yaitu `/create-ajax/`, ke dalam `urls.py` yang ada di direktori proyek. Berikut kodenya:<br>
+        ```
+        ...
+        from main.views import add_item_ajax
+        ...
+        path('create-ajax/', add_item_ajax, name='add_item_ajax'),
+        ```
+        Langkah terakhir, saya membuat function baru di tag `<script>` agar bisa mengimplementasikan AJAX POST. Saya membuat function dengan nama `addItem()`. Kode yang saya gunakan sebagai berikut:<br>
+        ```
+        function addItem() {
+            fetch("{% url 'main:add_item_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshItems)
+
+            document.getElementById("form").reset()
+            return false
+        }
+        document.getElementById("button_add").onclick = addItem
+        ```
+        Setelah melakukan beberapa langkah ini, saya sudah bisa mengimplementasikan penambahan `Item` baru dengan AJAX POST.
+    
+    <br>
+
+    * **Melakukan perintah `collectstatic`**<br>
+        Untuk melakukan perintah `collectstatic`, saya membuka `settings.py` dan menambahkan kode berikut di bawah `STATIC_URL = '/static/'`:<br>
+        ```
+        STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+        ```
+        Setelah itu, saya membuka `Command Prompt` untuk menjalankan `collectstatic` dengan perintah berikut:<br>
+        ```
+        python manage.py collectstatic
+        ```
+
+## Bonus Tugas 6
+Saya membuat bonus untuk tugas 6 dengan menambahkan beberapa kode berikut. Pertama-tama, saya membuat fungsi `delete_item_ajax` di `views.py` dengan kode berikut:<br>
+```
+@csrf_exempt
+def delete_item_ajax(request, id):
+    item = Item.objects.get(pk=id)
+    item.delete()
+    return HttpResponse(b"DELETED", status=201)
+```
+Setelah itu, saya membuat _path_ ke fungsi tersebut di `urls.py`. Saya menambahkan _path_ ini:<br>
+```
+path('delete-item-ajax/<int:id>/', delete_item_ajax, name='delete_item_ajax'),
+```
+Karena saya sudah menambahkan _path_ tersebut, saya sudah bisa mengaksesnya dari `main.html`. Langkah selanjutnya adalah saya membuat fungsi _asynchronous_ untuk mengecek apakah _user_ benar-benar ingin menghapus `Item` tersebut dan fungsi _synchronous_ jika _user_ ingin lanjut menghapus. Berikut kodenya:<br>
+```
+async function confirmDelete(id) {
+    if (confirm('Apakah Anda yakin ingin menghapus item ini?')) {
+        deleteItem(id);
+    }
+}
+
+function deleteItem(id) {
+    fetch("/delete-item-ajax/?/".replace("?", id), {
+        method: "POST"
+    }).then(refreshItems)
+
+    document.getElementById("form").reset()
+    return false
+}
+```
+Terakhir, saya membuat _delete button_ di dalam fungsi `refreshItems` untuk menjalankan `confirmDelete(id)` pada saat diklik seperti berikut:<br>
+```
+<a href="#" class="btn btn-danger" onclick="confirmDelete(${item.pk}); return false;">Delete</a>
+```
+
+## Referensi Tugas 6
+* _Event-Driven Programming._ (n.d.). Tutorialspoint. Retrieved October 12, 2023, from https://www.tutorialspoint.com/concurrency_in_python/concurrency_in_python_eventdriven_programming.htm
+* Pangestu, G. (n.d.). _Asynchronous vs Synchronous Programming_. BINUS UNIVERSITY. Retrieved October 12, 2023, from https://binus.ac.id/malang/2022/05/asynchronous-vs-synchronous-programming/
+* _What is an asynchronous request in AJAX ?_ (2019, March 9). GeeksforGeeks. Retrieved October 12, 2023, from https://www.geeksforgeeks.org/what-is-an-asynchro
+
+</details>
