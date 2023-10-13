@@ -33,7 +33,6 @@
 
     .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
         background-color: green;
-        margin-bottom: 15px;
     }
 
     table {
@@ -50,32 +49,11 @@
         margin-right: 5px;
     }
 
-    button.edit {
-        background-color: green;
-        border-radius: 10px;
-        text-align: center;
-    }
-
-    button.edit:hover, button.edit:active, button.edit:focus {
-        background-color: darkgreen;
-        border-radius: 10px;
-    }
-
-    button.delete {
-        background-color: black;
-        border-radius: 10px;
-        text-align: center;
-    }
-
-    button.delete:hover, button.delete:active, button.delete:focus {
-        background-color: #2b2a2a;
-        border-radius: 10px;
-    }
-
     td {
         border: 1px solid #dddddd;
         padding: 8px;
-        text-align: left; 
+        text-align: left;
+        position: relative;
     }
 
     th {
@@ -88,39 +66,27 @@
         background-color: #ddd;
     }
 
-    /* Stil teks di textarea */
-    textarea {
-        width: 100%;
-        padding: 6px 12px;
-        border: 1px transparent;
-        resize:both;
-        background-color: #ddd;
-    }
-
-    textarea:hover {
-        background-color: #ddd;
-    }
-
-    h5 {
-        font-size: 24px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+    #sapa, #sesi {
+        font-size: 24px;
         text-align: center;
-        margin-bottom: 10px; /* Jarak antara h5 dan p */
+        margin-bottom: 10px;
     }
 
-    p {
-        font-size: 18px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+    #total {
+        font-size: 18px;
         text-align: center;
-        margin-bottom: 20px; /* Jarak antara p dan elemen berikutnya */
+        margin-bottom: 20px;
     }
 
     .button-container {
         text-align: center;
-        margin-top: 10px; /* Sesuaikan dengan jarak atas yang Anda inginkan */
+        margin-top: 10px;
         margin-bottom: 10px;
     }
 
     .custom-button {
-        background-color: green;
+        background-color: #eb8921;
+        border-color: #eb8921;
         color: white;
         padding: 10px 20px;
         border: none;
@@ -130,6 +96,15 @@
     }
 
     .custom-button:hover, .custom-button:active, .custom-button:focus {
+        background-color: #f5ad28;
+        border-color: #f5ad28;
+    }
+
+    #button_add{
+        background-color: green
+    }
+
+    #button_add:hover{
         background-color: darkgreen;
     }
 
@@ -147,6 +122,79 @@
         background-color:#2b2a2a;
     }
 
+    .card {
+        width: 320px; /* Lebar kartu yang lebih besar */
+        height: 320px; /* Tinggi kartu yang lebih besar */
+        border-radius: 10px; /* Border melengkung */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+        margin: 10px; /* Jarak antara kartu */
+        display: flex; /* Menyusun kartu dalam satu baris */
+        overflow: hidden; /* Batasi overflow */
+    }
+
+    .card:hover .card-header, .card:hover .card-footer {
+        background-color: rgb(243, 188, 86); /* Warna latar belakang saat hover */
+    }
+
+    .card:hover .card-body {
+        background-color: rgb(234, 201, 141);
+    }
+
+    .card-body {
+        padding: 10px;
+    }
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card-title {
+        font-size: 20px;
+        text-align: center;
+        white-space: nowrap; /* Tidak ada wrap pada judul */
+        overflow: hidden; /* Batasi judul yang panjang */
+        text-overflow:ellipsis;
+    }
+
+    .card-footer {
+        margin-top: auto;
+    }
+    
+    .card-footer .btn.btn-primary {
+        background-color: #eb8921;
+        border-color: #eb8921;
+    }
+    .card-footer .btn.btn-primary:hover {
+        background-color: #f5ad28;
+        border-color: #f5ad28;
+    }
+
+    .card-footer .btn.btn-danger {
+        background-color: black;
+        border-color: black;
+    }
+    .card-footer .btn.btn-danger:hover {
+        background-color: #2b2a2a;
+        border-color: #2b2a2a;
+    }
+
+    .card-body .card-description {
+        max-height: 200px; /* Tinggi maksimum deskripsi */
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* Menampilkan maksimum 3 baris teks */
+        -webkit-box-orient: vertical;
+    }
+
+    .footer {
+        background-color: black; 
+        color: white; 
+        text-align: center; 
+        padding: 20px;
+    }
+    
 </style>
 
     <nav class="navbar navbar-expand-lg">
@@ -158,55 +206,149 @@
         </div>
     </nav>
 
-    <h5 class="custom-heading">Halo {{name}} dari kelas {{class}}!</h5>
+    <h5 id="sapa" class="custom-heading">Halo {{name}} dari kelas {{class}}!</h5>
 
     {% with total_items=items|length %}
-        <p>☕ Anda menyimpan {{ total_items }} jenis kopi pada aplikasi ini ☕</p>
+        <p id="total">☕ Anda menyimpan {{ total_items }} jenis kopi pada aplikasi ini ☕</p>
     {% endwith %}
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Edit</th>
-        </tr>
-
-        {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
-
-        {% for item in items %}
-            <tr>
-                <td>{{ item.name }}</td>
-                <td>{{ item.price }}</td>
-                <td>{{ item.amount }}</td>
-                <td><textarea rows="4" cols="40" readonly style="resize:none;">{{ item.description }}</textarea></td>
-                <td>
-                    <a href="{% url 'main:edit_item' item.pk %}">
-                        <button class="edit">Edit</button>
-                    </a>
-                    <a href="{% url 'main:delete_item' item.pk %}" onclick="return confirm('Apakah anda yakin ingin menghapus barang ini?')">
-                        <button class="delete">Delete</button>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-
-    <h5 style="margin-top: 20px;">Sesi terakhir login: {{ last_login }}</h5>
+    <div class="cards-container"></div>
+    
+    <h5 id="sesi" style="margin-top: 20px;">Sesi terakhir login: {{ last_login }}</h5>
     <br />
 
     <div class="button-container text-center">
-        <a href="{% url 'main:create_item' %}">
-            <button class="custom-button">
-                Add New Item
-            </button>
-        </a>
+        <button class="custom-button btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="openModal">
+            Add New Item
+        </button>
+        
         <a href="{% url 'main:logout' %}" onclick="return confirm('Apakah Anda yakin ingin logout?');">
             <button class="custom-button logout-button">
                 Logout
             </button>
         </a>
     </div>
+
+    <div class="footer">
+        &copy; 2023 Coffeeine. All Rights Reserved.
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Your New Coffee</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="button_delete"data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Coffee</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function getItems() {
+            return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+        }
+
+        async function refreshItems() {
+            const items = await getItems();
+            const cardsContainer = document.querySelector(".cards-container");
+            cardsContainer.innerHTML = "";
+
+            items.forEach((item) => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                <header class="card-header">
+                    <h5 class="card-title">${item.fields.name}</h5>
+                </header>
+                <div class="card-body">
+                    <p class="card-text">Price: ${item.fields.price}</p>
+                    <p class="card-text">Amount: ${item.fields.amount}</p>
+                    <p class="card-description">Description: ${item.fields.description}</p>
+                    </div>
+                <div class="card-footer">
+                    <a href="/edit-item/${item.pk}" class="btn btn-primary">Edit</a>
+                    {% csrf_token %}
+                        <button class="btn btn-secondary" onclick="incrementAmount(${item.pk})">+</button>
+                        <button class="btn btn-secondary" onclick="decrementAmount(${item.pk})">-</button>
+                        <a href="#" class="btn btn-danger" onclick="confirmDelete(${item.pk}); return false;">Delete</a>
+                </div>
+                `;
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        function addItem() {
+            fetch("{% url 'main:add_item_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshItems)
+
+            document.getElementById("form").reset()
+            return false
+        }
+
+        function incrementAmount(id) {
+            fetch("/increment-item-ajax/?/".replace("?", id), {
+                method: "POST"
+            }).then(refreshItems)
+
+            document.getElementById("form").reset()
+            return false
+        }
+
+        function decrementAmount(id) {
+            fetch("/decrement-item-ajax/?/".replace("?", id), {
+                method: "POST"
+            }).then(refreshItems)
+
+            document.getElementById("form").reset()
+            return false
+        }
+
+        async function confirmDelete(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus item ini?')) {
+                deleteItem(id);
+            }
+        }
+
+        function deleteItem(id) {
+            fetch("/delete-item-ajax/?/".replace("?", id), {
+                method: "POST"
+            }).then(refreshItems)
+
+            document.getElementById("form").reset()
+            return false
+        }
+
+        refreshItems()
+        document.getElementById("button_add").onclick = addItem
+    </script>
 
 {% endblock content %}
